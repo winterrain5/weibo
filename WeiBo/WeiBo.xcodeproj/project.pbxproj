@@ -20,6 +20,15 @@
 		255B5D711D4789F300B7E637 /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D701D4789F300B7E637 /* MessageTableViewController.swift */; };
 		255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D721D4789FD00B7E637 /* ProfileTableViewController.swift */; };
 		256E106C1D4A4465003B07E3 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E106B1D4A4465003B07E3 /* UIButton+Extension.swift */; };
+		256E106E1D4C7800003B07E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E106D1D4C7800003B07E3 /* Main.storyboard */; };
+		256E10701D4C7B41003B07E3 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E106F1D4C7B41003B07E3 /* Home.storyboard */; };
+		256E10721D4C7B59003B07E3 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E10711D4C7B59003B07E3 /* Message.storyboard */; };
+		256E10741D4C7B6D003B07E3 /* Discover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E10731D4C7B6D003B07E3 /* Discover.storyboard */; };
+		256E10761D4C7B7E003B07E3 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E10751D4C7B7D003B07E3 /* Profile.storyboard */; };
+		256E10781D4C7E1A003B07E3 /* Null.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E10771D4C7E1A003B07E3 /* Null.storyboard */; };
+		256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E10791D4C802D003B07E3 /* BaseTableViewController.swift */; };
+		256E107C1D4C81E9003B07E3 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E107B1D4C81E9003B07E3 /* VisitorView.swift */; };
+		256E107E1D4C81FD003B07E3 /* VisitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256E107D1D4C81FD003B07E3 /* VisitorView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +68,15 @@
 		255B5D701D4789F300B7E637 /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		255B5D721D4789FD00B7E637 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		256E106B1D4A4465003B07E3 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		256E106D1D4C7800003B07E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		256E106F1D4C7B41003B07E3 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = ../Main/Home.storyboard; sourceTree = "<group>"; };
+		256E10711D4C7B59003B07E3 /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Message.storyboard; path = ../Main/Message.storyboard; sourceTree = "<group>"; };
+		256E10731D4C7B6D003B07E3 /* Discover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Discover.storyboard; path = ../Main/Discover.storyboard; sourceTree = "<group>"; };
+		256E10751D4C7B7D003B07E3 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = ../Main/Profile.storyboard; sourceTree = "<group>"; };
+		256E10771D4C7E1A003B07E3 /* Null.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Null.storyboard; path = ../Main/Null.storyboard; sourceTree = "<group>"; };
+		256E10791D4C802D003B07E3 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		256E107B1D4C81E9003B07E3 /* VisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
+		256E107D1D4C81FD003B07E3 /* VisitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisitorView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +171,7 @@
 		255B5D611D47891D00B7E637 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				256E10771D4C7E1A003B07E3 /* Null.storyboard */,
 				255B5D6C1D4789DC00B7E637 /* ComposeTableViewController.swift */,
 				250A42E41D47B79E0039B834 /* NullTableViewController.swift */,
 			);
@@ -162,6 +181,7 @@
 		255B5D621D47891D00B7E637 /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				256E10731D4C7B6D003B07E3 /* Discover.storyboard */,
 				255B5D6E1D4789E700B7E637 /* DiscoverTableViewController.swift */,
 			);
 			path = Discover;
@@ -170,6 +190,7 @@
 		255B5D631D47891D00B7E637 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				256E106F1D4C7B41003B07E3 /* Home.storyboard */,
 				255B5D6A1D4789BE00B7E637 /* HomeTableViewController.swift */,
 			);
 			path = Home;
@@ -179,6 +200,10 @@
 			isa = PBXGroup;
 			children = (
 				255B5D681D4789A600B7E637 /* MainViewController.swift */,
+				256E106D1D4C7800003B07E3 /* Main.storyboard */,
+				256E10791D4C802D003B07E3 /* BaseTableViewController.swift */,
+				256E107B1D4C81E9003B07E3 /* VisitorView.swift */,
+				256E107D1D4C81FD003B07E3 /* VisitorView.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -186,6 +211,7 @@
 		255B5D651D47891D00B7E637 /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				256E10711D4C7B59003B07E3 /* Message.storyboard */,
 				255B5D701D4789F300B7E637 /* MessageTableViewController.swift */,
 			);
 			path = Message;
@@ -194,6 +220,7 @@
 		255B5D661D47891D00B7E637 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				256E10751D4C7B7D003B07E3 /* Profile.storyboard */,
 				255B5D721D4789FD00B7E637 /* ProfileTableViewController.swift */,
 			);
 			path = Profile;
@@ -311,8 +338,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256E106E1D4C7800003B07E3 /* Main.storyboard in Resources */,
+				256E10781D4C7E1A003B07E3 /* Null.storyboard in Resources */,
 				255B5BBF1D46589B00B7E637 /* LaunchScreen.storyboard in Resources */,
+				256E10721D4C7B59003B07E3 /* Message.storyboard in Resources */,
 				255B5BBC1D46589B00B7E637 /* Assets.xcassets in Resources */,
+				256E10701D4C7B41003B07E3 /* Home.storyboard in Resources */,
+				256E10761D4C7B7E003B07E3 /* Profile.storyboard in Resources */,
+				256E10741D4C7B6D003B07E3 /* Discover.storyboard in Resources */,
+				256E107E1D4C81FD003B07E3 /* VisitorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,8 +371,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256E107C1D4C81E9003B07E3 /* VisitorView.swift in Sources */,
 				255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */,
 				255B5D6D1D4789DC00B7E637 /* ComposeTableViewController.swift in Sources */,
+				256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */,
 				250A42E51D47B79E0039B834 /* NullTableViewController.swift in Sources */,
 				255B5D6B1D4789BE00B7E637 /* HomeTableViewController.swift in Sources */,
 				255B5BB51D46589B00B7E637 /* AppDelegate.swift in Sources */,

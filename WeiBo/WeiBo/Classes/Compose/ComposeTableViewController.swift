@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComposeTableViewController: UITableViewController {
+class ComposeTableViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

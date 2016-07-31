@@ -14,8 +14,7 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         
 
-       addChildViewControllers()
-       
+            
     }
     
     override func viewWillAppear(animated: Bool) {
