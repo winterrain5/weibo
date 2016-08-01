@@ -19,6 +19,12 @@
 		255B5D6F1D4789E700B7E637 /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D6E1D4789E700B7E637 /* DiscoverTableViewController.swift */; };
 		255B5D711D4789F300B7E637 /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D701D4789F300B7E637 /* MessageTableViewController.swift */; };
 		255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D721D4789FD00B7E637 /* ProfileTableViewController.swift */; };
+		256979CF1D4DDD2E00F78553 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256979CE1D4DDD2E00F78553 /* Reveal.framework */; };
+		256979D21D4DDDE400F78553 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 256979D11D4DDDE400F78553 /* libz.tbd */; };
+		256979D41D4DDFBD00F78553 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256979D31D4DDFBD00F78553 /* Extension.swift */; };
+		256979D81D4DE3C000F78553 /* TitleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256979D71D4DE3C000F78553 /* TitleButton.swift */; };
+		256979DB1D4E33F300F78553 /* popover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256979DA1D4E33F300F78553 /* popover.storyboard */; };
+		256979DD1D4E384B00F78553 /* CSPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256979DC1D4E384B00F78553 /* CSPresentationController.swift */; };
 		256E106C1D4A4465003B07E3 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E106B1D4A4465003B07E3 /* UIButton+Extension.swift */; };
 		256E106E1D4C7800003B07E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E106D1D4C7800003B07E3 /* Main.storyboard */; };
 		256E10701D4C7B41003B07E3 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 256E106F1D4C7B41003B07E3 /* Home.storyboard */; };
@@ -67,6 +73,12 @@
 		255B5D6E1D4789E700B7E637 /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		255B5D701D4789F300B7E637 /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		255B5D721D4789FD00B7E637 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		256979CE1D4DDD2E00F78553 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
+		256979D11D4DDDE400F78553 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		256979D31D4DDFBD00F78553 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		256979D71D4DE3C000F78553 /* TitleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleButton.swift; sourceTree = "<group>"; };
+		256979DA1D4E33F300F78553 /* popover.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = popover.storyboard; sourceTree = "<group>"; };
+		256979DC1D4E384B00F78553 /* CSPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSPresentationController.swift; sourceTree = "<group>"; };
 		256E106B1D4A4465003B07E3 /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		256E106D1D4C7800003B07E3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		256E106F1D4C7B41003B07E3 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Home.storyboard; path = ../Main/Home.storyboard; sourceTree = "<group>"; };
@@ -84,6 +96,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				256979D21D4DDDE400F78553 /* libz.tbd in Frameworks */,
+				256979CF1D4DDD2E00F78553 /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +121,7 @@
 		255B5BA81D46589B00B7E637 = {
 			isa = PBXGroup;
 			children = (
+				256979D11D4DDDE400F78553 /* libz.tbd */,
 				255B5BB31D46589B00B7E637 /* WeiBo */,
 				255B5BC81D46589B00B7E637 /* WeiBoTests */,
 				255B5BD31D46589B00B7E637 /* WeiBoUITests */,
@@ -157,6 +172,7 @@
 		255B5D601D47891D00B7E637 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				256979D01D4DDD3100F78553 /* Framework */,
 				255B5D611D47891D00B7E637 /* Compose */,
 				255B5D621D47891D00B7E637 /* Discover */,
 				255B5D631D47891D00B7E637 /* Home */,
@@ -190,6 +206,7 @@
 		255B5D631D47891D00B7E637 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				256979D91D4E33D900F78553 /* Popover */,
 				256E106F1D4C7B41003B07E3 /* Home.storyboard */,
 				255B5D6A1D4789BE00B7E637 /* HomeTableViewController.swift */,
 			);
@@ -230,8 +247,27 @@
 			isa = PBXGroup;
 			children = (
 				256E106B1D4A4465003B07E3 /* UIButton+Extension.swift */,
+				256979D31D4DDFBD00F78553 /* Extension.swift */,
+				256979D71D4DE3C000F78553 /* TitleButton.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		256979D01D4DDD3100F78553 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				256979CE1D4DDD2E00F78553 /* Reveal.framework */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		256979D91D4E33D900F78553 /* Popover */ = {
+			isa = PBXGroup;
+			children = (
+				256979DA1D4E33F300F78553 /* popover.storyboard */,
+				256979DC1D4E384B00F78553 /* CSPresentationController.swift */,
+			);
+			name = Popover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -346,6 +382,7 @@
 				256E10701D4C7B41003B07E3 /* Home.storyboard in Resources */,
 				256E10761D4C7B7E003B07E3 /* Profile.storyboard in Resources */,
 				256E10741D4C7B6D003B07E3 /* Discover.storyboard in Resources */,
+				256979DB1D4E33F300F78553 /* popover.storyboard in Resources */,
 				256E107E1D4C81FD003B07E3 /* VisitorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +411,8 @@
 				256E107C1D4C81E9003B07E3 /* VisitorView.swift in Sources */,
 				255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */,
 				255B5D6D1D4789DC00B7E637 /* ComposeTableViewController.swift in Sources */,
+				256979DD1D4E384B00F78553 /* CSPresentationController.swift in Sources */,
+				256979D41D4DDFBD00F78553 /* Extension.swift in Sources */,
 				256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */,
 				250A42E51D47B79E0039B834 /* NullTableViewController.swift in Sources */,
 				255B5D6B1D4789BE00B7E637 /* HomeTableViewController.swift in Sources */,
@@ -381,6 +420,7 @@
 				256E106C1D4A4465003B07E3 /* UIButton+Extension.swift in Sources */,
 				255B5D6F1D4789E700B7E637 /* DiscoverTableViewController.swift in Sources */,
 				255B5D711D4789F300B7E637 /* MessageTableViewController.swift in Sources */,
+				256979D81D4DE3C000F78553 /* TitleButton.swift in Sources */,
 				255B5D691D4789A600B7E637 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,8 +554,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeiBo/Classes",
+				);
 				INFOPLIST_FILE = WeiBo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdd.WeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -527,8 +576,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WeiBo/Classes",
+				);
 				INFOPLIST_FILE = WeiBo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdd.WeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
