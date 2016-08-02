@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		250A42E51D47B79E0039B834 /* NullTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250A42E41D47B79E0039B834 /* NullTableViewController.swift */; };
+		25301DC01D4F7E3300A13446 /* PopvoerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25301DBF1D4F7E3300A13446 /* PopvoerController.swift */; };
+		25301DC21D4F91E600A13446 /* CSPresentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25301DC11D4F91E600A13446 /* CSPresentManager.swift */; };
 		255B5BB51D46589B00B7E637 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5BB41D46589B00B7E637 /* AppDelegate.swift */; };
 		255B5BBC1D46589B00B7E637 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 255B5BBB1D46589B00B7E637 /* Assets.xcassets */; };
 		255B5BBF1D46589B00B7E637 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 255B5BBD1D46589B00B7E637 /* LaunchScreen.storyboard */; };
@@ -56,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		250A42E41D47B79E0039B834 /* NullTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullTableViewController.swift; sourceTree = "<group>"; };
+		25301DBF1D4F7E3300A13446 /* PopvoerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopvoerController.swift; sourceTree = "<group>"; };
+		25301DC11D4F91E600A13446 /* CSPresentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSPresentManager.swift; sourceTree = "<group>"; };
 		255B5BB11D46589B00B7E637 /* WeiBo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeiBo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		255B5BB41D46589B00B7E637 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		255B5BBB1D46589B00B7E637 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 			children = (
 				256979DA1D4E33F300F78553 /* popover.storyboard */,
 				256979DC1D4E384B00F78553 /* CSPresentationController.swift */,
+				25301DBF1D4F7E3300A13446 /* PopvoerController.swift */,
+				25301DC11D4F91E600A13446 /* CSPresentManager.swift */,
 			);
 			name = Popover;
 			sourceTree = "<group>";
@@ -411,6 +417,8 @@
 				256E107C1D4C81E9003B07E3 /* VisitorView.swift in Sources */,
 				255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */,
 				255B5D6D1D4789DC00B7E637 /* ComposeTableViewController.swift in Sources */,
+				25301DC21D4F91E600A13446 /* CSPresentManager.swift in Sources */,
+				25301DC01D4F7E3300A13446 /* PopvoerController.swift in Sources */,
 				256979DD1D4E384B00F78553 /* CSPresentationController.swift in Sources */,
 				256979D41D4DDFBD00F78553 /* Extension.swift in Sources */,
 				256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */,

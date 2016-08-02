@@ -21,8 +21,18 @@ class HomeTableViewController: BaseTableViewController {
         }
         
         // 设置导航条
-        
         createNav()
+        
+        // 注册通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidPresenter, object: animatorManager)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidDismiss, object: animatorManager)
+    }
+    
+    deinit {
+        
+        // 移除通知
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
     }
     
     private func createNav () {
@@ -34,15 +44,13 @@ class HomeTableViewController: BaseTableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(imageName:"navigationbar_pop", hightLightName: "navigationbar_pop_highlighted",target: self,action: Selector("pop"))
         
         // 创建标题
-        let titleButton = TitleButton()
-        titleButton.setTitle("哈哈哈", forState: UIControlState.Normal)
-        
-        
-        titleButton.addTarget(self, action: Selector("titleBtnClick:"), forControlEvents: UIControlEvents.TouchUpInside)
-        
         navigationItem.titleView = titleButton
     }
     
+   @objc private func titleChange() {
+        
+        titleButton.selected = !titleButton.selected
+    }
     
     // MARK:  -点击事件
     @objc private func titleBtnClick(btn: UIButton) {
@@ -60,7 +68,7 @@ class HomeTableViewController: BaseTableViewController {
         // 自定义转场动画
         // 设置转场代理
         
-        menuView.transitioningDelegate = self
+        menuView.transitioningDelegate = animatorManager
         
         // 设置转场动画样式
         
@@ -74,23 +82,25 @@ class HomeTableViewController: BaseTableViewController {
     @objc private func pop() {
          print("pop")
     }
+    
+    private lazy var animatorManager:CSPresentManager =  {
+       
+        let manager = CSPresentManager()
+        
+        manager.presentFrame = CGRect(x: 100, y: 50, width: 200, height: 400)
+        return manager;
+        
+    }()
+    
+    private lazy var titleButton:TitleButton = {
+    
+        let titleButton = TitleButton()
+        titleButton.setTitle("哈哈哈", forState: UIControlState.Normal)
+        titleButton.addTarget(self, action: Selector("titleBtnClick:"), forControlEvents: UIControlEvents.TouchUpInside)
+        return titleButton
+        
+    }()
 }
 
 // MARK: - UIViewControllerTransitioningDelegate 实现代理
 
-extension HomeTableViewController:UIViewControllerTransitioningDelegate {
-    
-    /**
-     返回一个负责转场动画的对象     */
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        return CSPresentationController(presentedViewController: presented, presentingViewController: presenting)
-    }
-    
-//    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-//        
-//    }
-//    
-//    func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-//        
-//    }
-}
