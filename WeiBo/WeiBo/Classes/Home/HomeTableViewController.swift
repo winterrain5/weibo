@@ -80,6 +80,12 @@ class HomeTableViewController: BaseTableViewController {
         print("search")
     }
     @objc private func pop() {
+        
+        let sb = UIStoryboard(name: "QRCode", bundle: nil)
+        
+        let vc = sb.instantiateInitialViewController()
+        
+        presentViewController(vc!, animated: true, completion: nil)
          print("pop")
     }
     

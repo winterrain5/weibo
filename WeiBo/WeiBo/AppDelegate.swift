@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.backgroundColor = UIColor.whiteColor()
 //        window?.rootViewController = MainViewController()
 //        window?.makeKeyAndVisible()
-       
+       UITabBar.appearance().tintColor = UIColor.orangeColor()
+        
         return true
     }
 /*
