@@ -61,6 +61,10 @@ class QRCodeViewController: UIViewController {
         // 添加预览图层
         view.layer.insertSublayer(previewLayer, atIndex: 0)
         previewLayer.frame = view.bounds
+        
+        view.layer.addSublayer(containerLayer)
+        containerLayer.frame = view.bounds
+        
         // 6、开始扫描
         session.startRunning()
     }
@@ -87,12 +91,30 @@ class QRCodeViewController: UIViewController {
         
          dismissViewControllerAnimated(true , completion: nil)
     }
+    
+    // MARK: -打开相册
     @IBAction func photoBtnClick(sender: UIBarButtonItem) {
         
+        // 判断是否能够打开相册
         
+        /*
+        case PhotoLibrary
+        case Camera
+        case SavedPhotosAlbum
+        */
+        if !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+            return
+        }
+        
+        // 创建相册
+        let imagePickController = UIImagePickerController()
+        
+        imagePickController.delegate = self
+        
+        presentViewController(imagePickController, animated: true, completion: nil)
     }
     
-    // MARK: - 懒加载
+    // MARK: -懒加载
     // 输入对象
     private lazy var input:AVCaptureDeviceInput = {
        
@@ -104,12 +126,40 @@ class QRCodeViewController: UIViewController {
     private lazy var session: AVCaptureSession = AVCaptureSession()
     
     // 输出对象
-    private lazy var output:AVCaptureMetadataOutput =  AVCaptureMetadataOutput()
+    private lazy var output:AVCaptureMetadataOutput =  {
+       
+        let out = AVCaptureMetadataOutput()
+        
+        
+        // 获取屏幕的frame
+        let viewRect = self.view.frame
+        
+        // 扫描容器的frame 
+        let containViewRect = self.containerView.frame
+        var x:CGFloat = 0
+        var y:CGFloat = 0
+        var height:CGFloat = 0
+        var width:CGFloat = 0
+        x = containViewRect.origin.y / viewRect.origin.x
+        y = containViewRect.origin.x / viewRect.origin.y
+        height = containViewRect.width / viewRect.width
+        width = containViewRect.height / viewRect.height
+//        let y =
+//        let height = ;
+//        let width = ;
+        
+        // 设置输出对象解析数据的范围
+        // 参照是横屏的左上角
+        out.rectOfInterest =  CGRect(x: x, y: y, width: width, height: height)
+        
+        return out
+    }()
     
     // 预览图层
     private lazy var previewLayer:AVCaptureVideoPreviewLayer =  AVCaptureVideoPreviewLayer(session: self.session)
-        
     
+    // 描边图层
+    private lazy var containerLayer:CALayer = CALayer()
 }
 
 extension QRCodeViewController:UITabBarDelegate {
@@ -135,5 +185,105 @@ extension QRCodeViewController:AVCaptureMetadataOutputObjectsDelegate {
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
         
         customLabel.text = metadataObjects.last?.stringValue
+        
+        clearLayers()
+        // 获取二维码的坐标 
+        
+        // corners { 148.0,11.6 151.2,58.4 192.1,56.7 190.4,9.4 }
+        
+        guard let metaData = metadataObjects.last as? AVMetadataObject else {
+            return
+        }
+        
+        let  objc = previewLayer.transformedMetadataObjectForMetadataObject(metaData)
+   
+        // 对扫描的二维码进行描边
+        drawLines(objc as! AVMetadataMachineReadableCodeObject)
     }
+    
+    private func drawLines(objc: AVMetadataMachineReadableCodeObject) {
+        
+        clearLayers()
+        
+        // 安全校验
+        guard let array = objc.corners else {
+            
+            return
+        }
+        
+        
+        // 创建图层 用于保存绘制的矩形
+        let layer = CAShapeLayer()
+        layer.lineWidth = 2
+        layer.strokeColor = UIColor.orangeColor().CGColor
+        layer.fillColor = UIColor.clearColor().CGColor
+        
+        // 创建UIBezierPath 绘制矩形
+        let path  = UIBezierPath()
+        var point = CGPointZero
+        var index = 0
+        CGPointMakeWithDictionaryRepresentation(array[index++] as! CFDictionary, &point)
+       path.moveToPoint(point)
+        // 将起点移动到其它点
+        while index < array.count {
+            CGPointMakeWithDictionaryRepresentation(array[index++] as! CFDictionary, &point)
+            
+            // 连接其它线
+            path.addLineToPoint(point)
+        }
+       
+        // 关闭路径
+        path.closePath()
+        
+        layer.path = path.CGPath
+        
+        // 将图层添加到界面
+        containerLayer.addSublayer(layer)
+    }
+    
+    // 清空描边
+    private func clearLayers() {
+        
+        guard let sublayers = containerLayer.sublayers else {
+            
+            return
+        }
+        for layer in sublayers
+        {
+             layer.removeFromSuperlayer()
+        }
+        
+    }
+}
+extension QRCodeViewController:UINavigationControllerDelegate,UIImagePickerControllerDelegate {
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        //实现该方法 选择不会自动关闭相册
+        
+        // 取出选中的图片
+       guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            
+            return
+        }
+        let ciImage = CIImage(image: image)!
+        
+        // 从选中的图片中读取二维码
+        
+        // 创建一个探测器
+       let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil , options: [CIDetectorAccuracy:CIDetectorAccuracyLow])
+        
+        // 探测数据
+       let results = detector.featuresInImage(ciImage)
+        
+        // 取出数据
+        for result in results {
+            
+            print((result as! CIQRCodeFeature).messageString)
+        }
+        picker.dismissViewControllerAnimated(true, completion: nil)
+        
+        
+    }
+    
+   
 }
