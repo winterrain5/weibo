@@ -39,6 +39,7 @@
 		256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E10791D4C802D003B07E3 /* BaseTableViewController.swift */; };
 		256E107C1D4C81E9003B07E3 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256E107B1D4C81E9003B07E3 /* VisitorView.swift */; };
 		256E107E1D4C81FD003B07E3 /* VisitorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 256E107D1D4C81FD003B07E3 /* VisitorView.xib */; };
+		25C182051D54C97C00D3B2AF /* QRCodeCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C182041D54C97C00D3B2AF /* QRCodeCreateViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		256E10791D4C802D003B07E3 /* BaseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		256E107B1D4C81E9003B07E3 /* VisitorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
 		256E107D1D4C81FD003B07E3 /* VisitorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VisitorView.xib; sourceTree = "<group>"; };
+		25C182041D54C97C00D3B2AF /* QRCodeCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeCreateViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				251DC93C1D50BD8D00488BED /* QRCode.storyboard */,
 				251DC93E1D50BF1200488BED /* QRCodeViewController.swift */,
+				25C182041D54C97C00D3B2AF /* QRCodeCreateViewController.swift */,
 			);
 			name = QRCode;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				251DC93F1D50BF1200488BED /* QRCodeViewController.swift in Sources */,
 				25301DC21D4F91E600A13446 /* CSPresentManager.swift in Sources */,
 				25301DC01D4F7E3300A13446 /* PopvoerController.swift in Sources */,
+				25C182051D54C97C00D3B2AF /* QRCodeCreateViewController.swift in Sources */,
 				256979DD1D4E384B00F78553 /* CSPresentationController.swift in Sources */,
 				256979D41D4DDFBD00F78553 /* Extension.swift in Sources */,
 				256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */,

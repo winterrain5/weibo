@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="00S-5Z-642" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-526" y="301"/>
+            <point key="canvasLocation" x="-634" y="311"/>
         </scene>
         <!--扫一扫-->
         <scene sceneID="A5s-qu-aWz">
@@ -38,7 +38,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aED-dC-ARJ">
-                                <rect key="frame" x="175" y="175" width="250" height="250"/>
+                                <rect key="frame" x="175" y="125" width="250" height="250"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qrcode_border" translatesAutoresizingMaskIntoConstraints="NO" id="ASm-Wx-K5S">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
@@ -62,7 +62,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="将二维码放入框内即可自动扫描" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAF-pg-jTY">
-                                <rect key="frame" x="175" y="445" width="250" height="21"/>
+                                <rect key="frame" x="175" y="395" width="250" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,17 +79,28 @@
                                 </items>
                                 <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.32000000000000001" colorSpace="calibratedRGB"/>
                             </tabBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDR-99-JG0">
+                                <rect key="frame" x="270" y="446" width="60" height="30"/>
+                                <state key="normal" title="我的名片">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="hZX-Ao-ind" kind="show" id="pJW-Eq-wDf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="bAF-pg-jTY" firstAttribute="trailing" secondItem="eC4-CF-RuJ" secondAttribute="trailing" id="3Kf-q6-qhE"/>
                             <constraint firstItem="ZeT-o9-ifM" firstAttribute="leading" secondItem="f05-Mp-LYq" secondAttribute="leading" id="8ds-yQ-1aI"/>
-                            <constraint firstItem="aED-dC-ARJ" firstAttribute="centerY" secondItem="f05-Mp-LYq" secondAttribute="centerY" id="FGN-lf-nqn"/>
+                            <constraint firstItem="aED-dC-ARJ" firstAttribute="centerY" secondItem="f05-Mp-LYq" secondAttribute="centerY" constant="-50" id="FGN-lf-nqn"/>
                             <constraint firstAttribute="trailing" secondItem="ZeT-o9-ifM" secondAttribute="trailing" id="FWU-xK-PiR"/>
                             <constraint firstItem="bAF-pg-jTY" firstAttribute="centerX" secondItem="f05-Mp-LYq" secondAttribute="centerX" id="K2W-ru-WAb"/>
                             <constraint firstItem="bAF-pg-jTY" firstAttribute="top" secondItem="aED-dC-ARJ" secondAttribute="bottom" constant="20" id="Me6-yu-Px0"/>
                             <constraint firstItem="bAF-pg-jTY" firstAttribute="leading" secondItem="eC4-CF-RuJ" secondAttribute="leading" id="N7J-bY-5KR"/>
+                            <constraint firstItem="QDR-99-JG0" firstAttribute="centerX" secondItem="f05-Mp-LYq" secondAttribute="centerX" id="Ohn-cD-yye"/>
                             <constraint firstItem="pMQ-u5-ntl" firstAttribute="top" secondItem="ZeT-o9-ifM" secondAttribute="bottom" id="S8z-qd-ZXZ"/>
+                            <constraint firstItem="QDR-99-JG0" firstAttribute="top" secondItem="bAF-pg-jTY" secondAttribute="bottom" constant="30" id="dZG-fp-dNc"/>
                             <constraint firstItem="aED-dC-ARJ" firstAttribute="centerX" secondItem="f05-Mp-LYq" secondAttribute="centerX" id="s6g-IX-CW6"/>
                         </constraints>
                     </view>
@@ -118,7 +129,41 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IOD-qd-9Yk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="190" y="301"/>
+            <point key="canvasLocation" x="46" y="301"/>
+        </scene>
+        <!--Code Create View Controller-->
+        <scene sceneID="aNC-ix-elj">
+            <objects>
+                <viewController id="hZX-Ao-ind" customClass="QRCodeCreateViewController" customModule="WeiBo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OF8-bW-GwX"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xob-dS-1j4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ieN-Z9-AQR">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VO1-Jw-gKf">
+                                <rect key="frame" x="200" y="200" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="2g0-9R-5og"/>
+                                    <constraint firstAttribute="width" constant="200" id="rDm-vt-7p6"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VO1-Jw-gKf" firstAttribute="centerY" secondItem="ieN-Z9-AQR" secondAttribute="centerY" id="8vR-Si-i4j"/>
+                            <constraint firstItem="VO1-Jw-gKf" firstAttribute="centerX" secondItem="ieN-Z9-AQR" secondAttribute="centerX" id="Sbg-th-HmA"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="customImageView" destination="VO1-Jw-gKf" id="LbJ-Qw-ong"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZZx-h4-ylA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="711" y="311"/>
         </scene>
     </scenes>
     <resources>
