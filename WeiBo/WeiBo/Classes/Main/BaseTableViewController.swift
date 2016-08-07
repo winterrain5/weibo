@@ -10,7 +10,7 @@ import UIKit
 
 class BaseTableViewController: UITableViewController {
     // 记录用户登录状态
-    var isLoging = true
+    var isLoging = false
     
     // 声明一个可选变量
     var visitorView: VisitorView?
@@ -41,7 +41,13 @@ class BaseTableViewController: UITableViewController {
     }
     
     @objc private func loginBtnClick(btn: UIButton) {
-        print("登录")
+        
+        let sb = UIStoryboard(name: "OAuth", bundle: nil)
+        
+        let vc = sb.instantiateInitialViewController()!
+        
+        presentViewController(vc, animated:true, completion: nil)
+        
     }
 }
 
