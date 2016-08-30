@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class OAuthViewController: UIViewController {
     @IBOutlet weak var customWebView: UIWebView!
@@ -25,6 +26,19 @@ class OAuthViewController: UIViewController {
     }
 }
 extension OAuthViewController:UIWebViewDelegate {
+    
+    func webViewDidStartLoad(webView: UIWebView) {
+        
+        SVProgressHUD.showInfoWithStatus("加载中...")
+        SVProgressHUD.setDefaultStyle(SVProgressHUDStyle.Dark)
+        
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        
+        SVProgressHUD.dismiss()
+        
+    }
     
     func  webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         

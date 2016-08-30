@@ -1,2 +1,4 @@
 use_frameworks!
 pod 'AFNetworking'
+pod 'SVProgressHUD'
+pod 'SDWebImage'

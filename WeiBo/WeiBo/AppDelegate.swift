@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     print(UserAccountModel.loadUserAccount())
        UITabBar.appearance().tintColor = UIColor.orangeColor()
         UINavigationBar.appearance().tintColor = UIColor.orangeColor()
+        
+        
+        window = UIWindow(frame:UIScreen.mainScreen().bounds)
+        window?.backgroundColor = UIColor.whiteColor()
+        let sb = UIStoryboard(name: "Wellcom", bundle: nil)
+        let vc = sb.instantiateInitialViewController()!
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
         return true
     }
 /*
