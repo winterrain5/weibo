@@ -28,7 +28,7 @@ extension OAuthViewController:UIWebViewDelegate {
     
     func  webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        print(request.URL)
+        print(request)
         // 判断当前是否是授权回调页
         guard let urlStr = request.URL?.absoluteString else {
             
@@ -43,13 +43,54 @@ extension OAuthViewController:UIWebViewDelegate {
         }
         // 判断授权回调的地址中是否包含code=
         let key = "code="
-        if urlStr.containsString(key)
+        guard let str = request.URL!.query else {
+            
+            return false
+        }
+        if str.hasPrefix(key)
         {
-            let code = request.URL!.query?.substringFromIndex(key.endIndex)
-            print("授权成功")
+            let code = str.substringFromIndex(key.endIndex)
+            
+            loadAccessToken(code)
             
             return false
         }
         return false ;
+    }
+    // 利用requestToken换取AccessToken
+    private func loadAccessToken(codeStr:String?) {
+        
+        guard let code = codeStr else {
+            
+            return
+        }
+        
+        let url = "oauth2/access_token"
+        
+        let parameters = ["client_id":"3117448573","client_secret":"be62a97f1ae78613ed3f5cba6ee4c9ba","grant_type":"authorization_code","code":code,"redirect_uri":"http://www.520it.com"]
+        
+        NetworkTool.shareInstance.POST(url, parameters: parameters, success:{ (task:NSURLSessionDataTask, objc:AnyObject?) -> Void in
+            /*
+            "access_token" = "2.001wXBtCbmUy5D3546e230b9Xd5pEE";
+            "expires_in" = 157679999;
+            "remind_in" = 157679999;
+            uid = 2645332940;
+            */
+            
+            print(objc)
+            let userModel = UserAccountModel(dict: objc as! [String : AnyObject])
+            print(userModel)
+            userModel.saveAccount()
+            // 获取用户信息
+            userModel.loadUserInfo({ (account, error) -> () in
+                
+                account?.saveAccount()
+                
+            })
+            
+            }) { (task:NSURLSessionDataTask?, error:NSError) -> Void in
+                
+                print(error)
+        }
     }
 }

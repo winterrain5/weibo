@@ -101,7 +101,8 @@ class HomeTableViewController: BaseTableViewController {
     private lazy var titleButton:TitleButton = {
     
         let titleButton = TitleButton()
-        titleButton.setTitle("哈哈哈", forState: UIControlState.Normal)
+        let title = UserAccountModel.loadUserAccount()?.screen_name
+        titleButton.setTitle(title, forState: UIControlState.Normal)
         titleButton.addTarget(self, action: Selector("titleBtnClick:"), forControlEvents: UIControlEvents.TouchUpInside)
         return titleButton
         
