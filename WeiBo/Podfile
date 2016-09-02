@@ -2,3 +2,4 @@ use_frameworks!
 pod 'AFNetworking'
 pod 'SVProgressHUD'
 pod 'SDWebImage'
+pod 'SnapKit', '~> 0.18.0'

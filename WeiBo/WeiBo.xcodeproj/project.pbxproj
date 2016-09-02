@@ -11,6 +11,8 @@
 		250A42E51D47B79E0039B834 /* NullTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250A42E41D47B79E0039B834 /* NullTableViewController.swift */; };
 		251DC93D1D50BD8D00488BED /* QRCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 251DC93C1D50BD8D00488BED /* QRCode.storyboard */; };
 		251DC93F1D50BF1200488BED /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DC93E1D50BF1200488BED /* QRCodeViewController.swift */; };
+		2527E9171D78648C00819575 /* NewfeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2527E9161D78648C00819575 /* NewfeatureViewController.swift */; };
+		2527E9191D7864A200819575 /* Newfeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2527E9181D7864A200819575 /* Newfeature.storyboard */; };
 		25301DC01D4F7E3300A13446 /* PopvoerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25301DBF1D4F7E3300A13446 /* PopvoerController.swift */; };
 		25301DC21D4F91E600A13446 /* CSPresentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25301DC11D4F91E600A13446 /* CSPresentManager.swift */; };
 		25305C7A1D75C124009325A3 /* WellcomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25305C791D75C124009325A3 /* WellcomViewController.swift */; };
@@ -71,6 +73,8 @@
 		250A42E41D47B79E0039B834 /* NullTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullTableViewController.swift; sourceTree = "<group>"; };
 		251DC93C1D50BD8D00488BED /* QRCode.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QRCode.storyboard; sourceTree = "<group>"; };
 		251DC93E1D50BF1200488BED /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
+		2527E9161D78648C00819575 /* NewfeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureViewController.swift; sourceTree = "<group>"; };
+		2527E9181D7864A200819575 /* Newfeature.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Newfeature.storyboard; sourceTree = "<group>"; };
 		25301DBF1D4F7E3300A13446 /* PopvoerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopvoerController.swift; sourceTree = "<group>"; };
 		25301DC11D4F91E600A13446 /* CSPresentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSPresentManager.swift; sourceTree = "<group>"; };
 		25305C791D75C124009325A3 /* WellcomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellcomViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			children = (
 				25305C791D75C124009325A3 /* WellcomViewController.swift */,
 				25305C7B1D75C144009325A3 /* Wellcom.storyboard */,
+				2527E9161D78648C00819575 /* NewfeatureViewController.swift */,
+				2527E9181D7864A200819575 /* Newfeature.storyboard */,
 			);
 			name = Newfeafure;
 			sourceTree = "<group>";
@@ -477,6 +483,7 @@
 				25305C7C1D75C144009325A3 /* Wellcom.storyboard in Resources */,
 				256E10701D4C7B41003B07E3 /* Home.storyboard in Resources */,
 				256E10761D4C7B7E003B07E3 /* Profile.storyboard in Resources */,
+				2527E9191D7864A200819575 /* Newfeature.storyboard in Resources */,
 				256E10741D4C7B6D003B07E3 /* Discover.storyboard in Resources */,
 				256979DB1D4E33F300F78553 /* popover.storyboard in Resources */,
 				256E107E1D4C81FD003B07E3 /* VisitorView.xib in Resources */,
@@ -564,6 +571,7 @@
 				256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */,
 				25305C7A1D75C124009325A3 /* WellcomViewController.swift in Sources */,
 				250A42E51D47B79E0039B834 /* NullTableViewController.swift in Sources */,
+				2527E9171D78648C00819575 /* NewfeatureViewController.swift in Sources */,
 				255B5D6B1D4789BE00B7E637 /* HomeTableViewController.swift in Sources */,
 				25DF93901D571CC7001A559F /* UserAccountModel.swift in Sources */,
 				25DF93751D57001A001A559F /* OAuthViewController.swift in Sources */,
@@ -720,7 +728,7 @@
 					Reveal,
 					"$(inherited)",
 				);
-				OTHER_SWIFT_FLAGS = "-D DEBUG";
+				OTHER_SWIFT_FLAGS = "-D DEBUG $(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sdd.WeiBo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

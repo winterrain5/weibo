@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame:UIScreen.mainScreen().bounds)
         window?.backgroundColor = UIColor.whiteColor()
-        let sb = UIStoryboard(name: "Wellcom", bundle: nil)
+        let sb = UIStoryboard(name: "Newfeature", bundle: nil)
         let vc = sb.instantiateInitialViewController()!
         window?.rootViewController = vc
         window?.makeKeyAndVisible()

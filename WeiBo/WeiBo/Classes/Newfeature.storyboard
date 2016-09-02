@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JlW-N3-Llz">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Newfeature View Controller-->
+        <scene sceneID="UTa-4f-WZt">
+            <objects>
+                <viewController id="JlW-N3-Llz" customClass="NewfeatureViewController" customModule="WeiBo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ko0-TI-rc2"/>
+                        <viewControllerLayoutGuide type="bottom" id="kJa-ku-YyQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4g8-Yn-UVZ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Ex-1u-o1r">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewLayout key="collectionViewLayout" id="Af9-Lb-Lpi" customClass="NewfeatureFlowLayout" customModule="WeiBo" customModuleProvider="target"/>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="newfeaturecell" id="IU7-7A-zQe" customClass="NewfeatureCell" customModule="WeiBo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="JlW-N3-Llz" id="4N4-28-1xw"/>
+                                    <outlet property="delegate" destination="JlW-N3-Llz" id="cgF-7Y-c55"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kJa-ku-YyQ" firstAttribute="top" secondItem="0Ex-1u-o1r" secondAttribute="bottom" id="0Px-f7-Gc2"/>
+                            <constraint firstAttribute="trailing" secondItem="0Ex-1u-o1r" secondAttribute="trailing" id="X6J-DG-BtF"/>
+                            <constraint firstItem="0Ex-1u-o1r" firstAttribute="top" secondItem="4g8-Yn-UVZ" secondAttribute="top" id="eEd-W9-7U5"/>
+                            <constraint firstItem="0Ex-1u-o1r" firstAttribute="leading" secondItem="4g8-Yn-UVZ" secondAttribute="leading" id="sBq-bF-p28"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZE-qA-sS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="318" y="303"/>
+        </scene>
+    </scenes>
+</document>
