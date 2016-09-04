@@ -13,6 +13,7 @@ class OAuthViewController: UIViewController {
     @IBOutlet weak var customWebView: UIWebView!
     
     override func viewDidLoad() {
+       
         super.viewDidLoad()
         let urlStr = "https://api.weibo.com/oauth2/authorize?client_id=3117448573&redirect_uri=http://www.520it.com"
         guard let url = NSURL(string: urlStr) else {
@@ -23,6 +24,11 @@ class OAuthViewController: UIViewController {
         let request = NSURLRequest(URL: url)
         
         customWebView.loadRequest(request)
+    }
+    
+    @IBAction func ClossAuthViewController() {
+        
+        dismissViewControllerAnimated(true , completion: nil)
     }
 }
 extension OAuthViewController:UIWebViewDelegate {
@@ -98,7 +104,15 @@ extension OAuthViewController:UIWebViewDelegate {
             // 获取用户信息
             userModel.loadUserInfo({ (account, error) -> () in
                 
+                // 保存用户信息
                 account?.saveAccount()
+                
+                // 跳转欢迎界面
+                let vc = UIStoryboard(name: "Wellcom", bundle: nil
+                ).instantiateInitialViewController()
+                UIApplication.sharedApplication().keyWindow?.rootViewController = vc
+                
+                self.ClossAuthViewController()
                 
             })
             

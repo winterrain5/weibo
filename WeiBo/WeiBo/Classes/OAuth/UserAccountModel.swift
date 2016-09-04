@@ -79,6 +79,7 @@ class UserAccountModel: NSObject,NSCoding{
     
     //判断用户是否登录
     class func isLogin() -> Bool {
+        
         return UserAccountModel.loadUserAccount() != nil
     }
     

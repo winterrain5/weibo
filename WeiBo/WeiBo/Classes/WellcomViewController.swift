@@ -39,7 +39,10 @@ class WellcomViewController: UIViewController {
                         self.titleLabel.alpha = 1.0
                         }, completion: { (_) -> Void in
                             
-                            
+                            // 跳转欢迎首页
+                            let vc = UIStoryboard(name: "Main", bundle: nil
+                                ).instantiateInitialViewController()
+                            UIApplication.sharedApplication().keyWindow?.rootViewController = vc
                     })
         }
         
