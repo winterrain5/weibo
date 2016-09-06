@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HomeTableViewController: BaseTableViewController {
 
@@ -26,6 +27,10 @@ class HomeTableViewController: BaseTableViewController {
         // 注册通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidPresenter, object: animatorManager)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidDismiss, object: animatorManager)
+        
+        // 加载数据
+        loadStatusesData()
+        
     }
     
     deinit {
@@ -34,6 +39,34 @@ class HomeTableViewController: BaseTableViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self)
         
     }
+    
+    
+    // MARK: 内部方法
+    private func loadStatusesData() {
+        
+        NetworkTool.shareInstance.loadStatuses { (array, error) -> () in
+            if error != nil {
+                
+                SVProgressHUD.showWithStatus("获取数据失败")
+                return
+            }
+            
+            guard let arr = array else {
+                
+                return
+            }
+            
+            var models = [Status]()
+            for dict in arr {
+                
+                let status = Status(dict: dict)
+                models.append(status)
+            }
+            print(models)
+        }
+        
+    }
+    
     
     private func createNav () {
         

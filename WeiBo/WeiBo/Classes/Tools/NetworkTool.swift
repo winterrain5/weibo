@@ -20,5 +20,30 @@ class NetworkTool: AFHTTPSessionManager {
         return instance
         
     }()
-    
+    // MARK: 加载微博数据
+    func loadStatuses(finished: (array :[[String: AnyObject]]?, error :NSError?)->()) {
+        
+        assert(UserAccountModel.loadUserAccount() != nil
+            , "必须授权登录才能获取微博数据")
+        
+        let path = "2/statuses/home_timeline.json"
+        
+        let parameter = ["access_token":UserAccountModel.loadUserAccount()!.access_token!]
+        
+        GET(path, parameters:parameter, success: { (task, objc) -> Void in
+     
+            guard let arr = (objc as! [String: AnyObject])["statuses"] as? [[String: AnyObject]] else {
+                
+                finished(array: nil
+                    , error: NSError(domain: "com.520it.lnj", code: 1000, userInfo: ["messages":"没有获取到数据"]))
+                return
+            }
+            finished(array: arr, error: nil)
+            }) { (task, error) -> Void in
+            
+                finished(array: nil, error: error)
+        }
+        
+        
+    }
 }
