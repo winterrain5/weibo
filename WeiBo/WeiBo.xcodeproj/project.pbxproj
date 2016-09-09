@@ -29,6 +29,10 @@
 		255B5D6F1D4789E700B7E637 /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D6E1D4789E700B7E637 /* DiscoverTableViewController.swift */; };
 		255B5D711D4789F300B7E637 /* MessageTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D701D4789F300B7E637 /* MessageTableViewController.swift */; };
 		255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 255B5D721D4789FD00B7E637 /* ProfileTableViewController.swift */; };
+		25678E281D7EF82600BB4AC2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25678E271D7EF82600BB4AC2 /* User.swift */; };
+		25678E541D80522600BB4AC2 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25678E531D80522600BB4AC2 /* HomeTableViewCell.swift */; };
+		25678E9A1D82588C00BB4AC2 /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25678E991D82588C00BB4AC2 /* NSDate+Extension.swift */; };
+		25678E9D1D8280E200BB4AC2 /* StatuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25678E9C1D8280E200BB4AC2 /* StatuesViewModel.swift */; };
 		256979CF1D4DDD2E00F78553 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 256979CE1D4DDD2E00F78553 /* Reveal.framework */; };
 		256979D21D4DDDE400F78553 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 256979D11D4DDDE400F78553 /* libz.tbd */; };
 		256979D41D4DDFBD00F78553 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256979D31D4DDFBD00F78553 /* Extension.swift */; };
@@ -98,6 +102,10 @@
 		255B5D6E1D4789E700B7E637 /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
 		255B5D701D4789F300B7E637 /* MessageTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewController.swift; sourceTree = "<group>"; };
 		255B5D721D4789FD00B7E637 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		25678E271D7EF82600BB4AC2 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		25678E531D80522600BB4AC2 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		25678E991D82588C00BB4AC2 /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		25678E9C1D8280E200BB4AC2 /* StatuesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatuesViewModel.swift; sourceTree = "<group>"; };
 		256979CE1D4DDD2E00F78553 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 		256979D11D4DDDE400F78553 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		256979D31D4DDFBD00F78553 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				2527E93F1D7DA4B100819575 /* Status.swift */,
+				25678E271D7EF82600BB4AC2 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -273,6 +282,8 @@
 		255B5D631D47891D00B7E637 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				25678E9B1D8280A000BB4AC2 /* ViewModel */,
+				25678E521D80520F00BB4AC2 /* View */,
 				2527E93E1D7DA48000819575 /* Model */,
 				251DC93B1D50BD6F00488BED /* QRCode */,
 				256979D91D4E33D900F78553 /* Popover */,
@@ -319,8 +330,25 @@
 				256979D31D4DDFBD00F78553 /* Extension.swift */,
 				256979D71D4DE3C000F78553 /* TitleButton.swift */,
 				25DF938D1D5709F3001A559F /* NetworkTool.swift */,
+				25678E991D82588C00BB4AC2 /* NSDate+Extension.swift */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		25678E521D80520F00BB4AC2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				25678E531D80522600BB4AC2 /* HomeTableViewCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		25678E9B1D8280A000BB4AC2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				25678E9C1D8280E200BB4AC2 /* StatuesViewModel.swift */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		256979D01D4DDD3100F78553 /* Framework */ = {
@@ -572,14 +600,18 @@
 			files = (
 				256E107C1D4C81E9003B07E3 /* VisitorView.swift in Sources */,
 				255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */,
+				25678E541D80522600BB4AC2 /* HomeTableViewCell.swift in Sources */,
 				255B5D6D1D4789DC00B7E637 /* ComposeTableViewController.swift in Sources */,
+				25678E281D7EF82600BB4AC2 /* User.swift in Sources */,
 				251DC93F1D50BF1200488BED /* QRCodeViewController.swift in Sources */,
+				25678E9D1D8280E200BB4AC2 /* StatuesViewModel.swift in Sources */,
 				25301DC21D4F91E600A13446 /* CSPresentManager.swift in Sources */,
 				25301DC01D4F7E3300A13446 /* PopvoerController.swift in Sources */,
 				25C182051D54C97C00D3B2AF /* QRCodeCreateViewController.swift in Sources */,
 				256979DD1D4E384B00F78553 /* CSPresentationController.swift in Sources */,
 				256979D41D4DDFBD00F78553 /* Extension.swift in Sources */,
 				256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */,
+				25678E9A1D82588C00BB4AC2 /* NSDate+Extension.swift in Sources */,
 				25305C7A1D75C124009325A3 /* WellcomViewController.swift in Sources */,
 				2527E9401D7DA4B100819575 /* Status.swift in Sources */,
 				250A42E51D47B79E0039B834 /* NullTableViewController.swift in Sources */,

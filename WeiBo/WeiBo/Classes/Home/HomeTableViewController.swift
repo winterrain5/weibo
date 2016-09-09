@@ -11,6 +11,19 @@ import SVProgressHUD
 
 class HomeTableViewController: BaseTableViewController {
 
+    
+    var homeCell:HomeTableViewCell?
+    // 所有微博数据
+    var statusesViewModel:[StatuesViewModel]? {
+        
+        // 调用statuses 就会调用didset 方法
+        didSet {
+            
+            tableView.reloadData()
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -43,7 +56,8 @@ class HomeTableViewController: BaseTableViewController {
     
     // MARK: 内部方法
     private func loadStatusesData() {
-        
+        SVProgressHUD.showWithStatus("加载中...")
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
         NetworkTool.shareInstance.loadStatuses { (array, error) -> () in
             if error != nil {
                 
@@ -55,14 +69,15 @@ class HomeTableViewController: BaseTableViewController {
                 
                 return
             }
-            
-            var models = [Status]()
+            SVProgressHUD.dismiss()
+            var models = [StatuesViewModel]()
             for dict in arr {
                 
                 let status = Status(dict: dict)
-                models.append(status)
+                let statusViewModel = StatuesViewModel(status: status)
+                models.append(statusViewModel)
             }
-            print(models)
+            self.statusesViewModel = models
         }
         
     }
@@ -143,4 +158,21 @@ class HomeTableViewController: BaseTableViewController {
 }
 
 // MARK: - UIViewControllerTransitioningDelegate 实现代理
-
+extension HomeTableViewController {
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // 如果self.statuses.count 为空 则传0
+        return self.statusesViewModel?.count ?? 0
+    }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let rid = "homeCell"
+        let cell = tableView.dequeueReusableCellWithIdentifier(rid) as! HomeTableViewCell
+        cell.statusViewModel = self.statusesViewModel![indexPath.row]
+        
+        return cell
+    
+        
+    }
+    
+}
