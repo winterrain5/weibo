@@ -44,6 +44,10 @@ class HomeTableViewController: BaseTableViewController {
         // 加载数据
         loadStatusesData()
         
+        // 预估行高
+        tableView.estimatedRowHeight = 200
+        // 自动计算高
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     deinit {
@@ -74,9 +78,11 @@ class HomeTableViewController: BaseTableViewController {
             for dict in arr {
                 
                 let status = Status(dict: dict)
+                
                 let statusViewModel = StatuesViewModel(status: status)
                 models.append(statusViewModel)
             }
+            
             self.statusesViewModel = models
         }
         

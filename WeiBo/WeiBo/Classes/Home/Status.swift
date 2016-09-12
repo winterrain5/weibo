@@ -25,7 +25,9 @@ class Status: NSObject {
     
     /**微博作者*/
     var user:User?
-
+    
+    /**配图*/
+    var pic_urls:[[String:AnyObject]]?
     
     init(dict: [String: AnyObject]) {
         
@@ -52,7 +54,7 @@ class Status: NSObject {
     }
     
    override var description: String {
-     let property = ["created_at","idstr","text","source"]
+     let property = ["created_at","idstr","text","source","pic_urls"]
     let dict = dictionaryWithValuesForKeys(property)
     return "\(dict)"
     }
