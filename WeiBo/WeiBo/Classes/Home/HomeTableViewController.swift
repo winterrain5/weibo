@@ -8,7 +8,7 @@
 
 import UIKit
 import SVProgressHUD
-
+import SDWebImage
 class HomeTableViewController: BaseTableViewController {
 
     
@@ -83,11 +83,54 @@ class HomeTableViewController: BaseTableViewController {
                 models.append(statusViewModel)
             }
             
-            self.statusesViewModel = models
+            
+            
+            // 缓存配图
+            self.cachesImages(models)
         }
         
     }
     
+    
+    /**
+    *  缓存配图
+    */
+    private func cachesImages(viewModels:[StatuesViewModel]) {
+    
+        // 创建一个组
+        let group = dispatch_group_create()
+        
+        for viewModel in viewModels {
+            
+            // 取出url数组
+            guard let picurls = viewModel.thumbnail_pic else {
+                
+                continue
+            }
+            
+            // 遍历配图数组下载图片
+            for url in picurls {
+                
+                // 将当前的下载操作添加到组中
+                dispatch_group_enter(group)
+                
+                // sdwebimage下载图片
+                SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _,_) -> Void in
+                    
+                    print("下载完成")
+                    // 将当前下载操作从组中移除 只有当所有添加进去的操作都被移除了才会调用dispatch_group_notify
+                    dispatch_group_leave(group)
+                })
+                
+            }
+        
+        }
+        
+        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+            self.statusesViewModel = viewModels
+            print("全部下载完成")
+        }
+    }
     
     private func createNav () {
         

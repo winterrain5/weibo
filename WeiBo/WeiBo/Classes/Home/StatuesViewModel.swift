@@ -50,6 +50,27 @@ class StatuesViewModel: NSObject {
             
             create_time = createDate.descriptionStr()
         }
+        
+        // 处理配图
+        if let picurls = status.pic_urls {
+            // 创建一个空的数组
+            thumbnail_pic = [NSURL]()
+            /**
+            遍历配图数组下载图片
+            */
+            for dict in picurls {
+                
+                guard let urlStr = dict["thumbnail_pic"] as? String else {
+                    
+                    continue
+                }
+                let url = NSURL(string: urlStr)!
+                // 将元素添加到数组中
+                thumbnail_pic?.append(url)
+            }
+            
+        }
+        
     }
     
     /**认证图片*/
@@ -63,4 +84,7 @@ class StatuesViewModel: NSObject {
     
     /**格式化后的来源*/
     var source_str:String?
+    
+    /**保存配图地址*/
+    var thumbnail_pic:[NSURL]?
 }
