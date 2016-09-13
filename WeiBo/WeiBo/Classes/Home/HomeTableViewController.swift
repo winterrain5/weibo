@@ -44,7 +44,7 @@ class HomeTableViewController: BaseTableViewController {
         // 加载数据
         loadStatusesData()
         
-        // 预估行高
+        // 预估行高 可以减少计算次数 提高性能
         tableView.estimatedRowHeight = 400
         // 自动计算高
 //        tableView.rowHeight = UITableViewAutomaticDimension
@@ -202,6 +202,9 @@ class HomeTableViewController: BaseTableViewController {
         return titleButton
         
     }()
+    
+    // 定义字典 缓存行高 提高性能
+    private var rowHeightCaches = [String:CGFloat]()
 }
 
 // MARK: - UIViewControllerTransitioningDelegate 实现代理
@@ -218,8 +221,33 @@ extension HomeTableViewController {
         cell.statusViewModel = self.statusesViewModel![indexPath.row]
         
         return cell
-    
         
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+         let  viewModel = statusesViewModel![indexPath.row]
+        // 从缓存中获取行高
+        guard let height = rowHeightCaches[viewModel.status.idstr ?? "-1"]  else {
+            // 缓存中没有行高
+            // 获取当前行对应的cell
+            let cell = tableView.dequeueReusableCellWithIdentifier("homeCell") as! HomeTableViewCell
+            
+            // 缓存行高
+            let temp = cell.cacluateRowHeight(viewModel)
+            rowHeightCaches[viewModel.status.idstr ?? "-1"] = temp
+            
+            return temp
+            
+        }
+        
+        // 缓存中有就直接返回行高
+        return height
+    }
+    override func didReceiveMemoryWarning() {
+        
+        // 释放缓存数据
+        rowHeightCaches.removeAll()
     }
     
 }

@@ -10,6 +10,7 @@ import UIKit
 import SDWebImage
 class HomeTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var footerToolView: UIView!
     @IBOutlet weak var picCollectionViewHCons: NSLayoutConstraint!
     @IBOutlet weak var picCollectionViewWCons: NSLayoutConstraint!
     @IBOutlet weak var flowLaout: UICollectionViewFlowLayout!
@@ -80,6 +81,19 @@ class HomeTableViewCell: UITableViewCell {
     
     }
 
+    // MARK: -外部方法 计算高度也要给到数据 并强制更新UI
+    func cacluateRowHeight(viewModel:StatuesViewModel) -> CGFloat{
+        
+        self.statusViewModel = viewModel
+        
+        // 更新UI
+        self.layoutIfNeeded()
+        
+        // 返回高度
+        return CGRectGetMaxY(footerToolView.frame)
+        
+    }
+    
     // MARK: -内部方法
     // 计算cell 和 collectionView的尺寸
     private func cacluateSize() -> (CGSize,CGSize) {
@@ -150,7 +164,6 @@ extension HomeTableViewCell:UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        print(statusViewModel?.thumbnail_pic?.count)
         return statusViewModel?.thumbnail_pic?.count ?? 0
         
     }

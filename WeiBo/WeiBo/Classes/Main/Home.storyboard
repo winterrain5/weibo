@@ -66,11 +66,11 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-hq-FZk">
-                                            <rect key="frame" x="0.0" y="184" width="600" height="40"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YQ1-hq-FZk">
+                                            <rect key="frame" x="0.0" y="180" width="600" height="35"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdW-pq-cg0">
-                                                    <rect key="frame" x="0.0" y="0.0" width="199" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="199" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" title="转发" image="timeline_icon_retweet">
@@ -78,7 +78,7 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLC-cm-yR2">
-                                                    <rect key="frame" x="401" y="0.0" width="199" height="40"/>
+                                                    <rect key="frame" x="401" y="0.0" width="199" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" title="点赞" image="timeline_icon_unlike">
@@ -86,7 +86,7 @@
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUn-L5-chu">
-                                                    <rect key="frame" x="200" y="0.0" width="200" height="40"/>
+                                                    <rect key="frame" x="200" y="0.0" width="200" height="35"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" title="评论" image="timeline_icon_comment">
@@ -94,7 +94,7 @@
                                                     </state>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="GLC-cm-yR2" firstAttribute="width" secondItem="qdW-pq-cg0" secondAttribute="width" id="178-nI-fgc"/>
                                                 <constraint firstAttribute="trailing" secondItem="GLC-cm-yR2" secondAttribute="trailing" id="6QB-xM-eBf"/>
@@ -104,7 +104,7 @@
                                                 <constraint firstItem="GLC-cm-yR2" firstAttribute="leading" secondItem="jUn-L5-chu" secondAttribute="trailing" id="Msc-oV-bWI"/>
                                                 <constraint firstAttribute="bottom" secondItem="jUn-L5-chu" secondAttribute="bottom" id="PDe-4x-cYB"/>
                                                 <constraint firstItem="jUn-L5-chu" firstAttribute="leading" secondItem="qdW-pq-cg0" secondAttribute="trailing" id="QKu-pY-8Zr"/>
-                                                <constraint firstAttribute="height" constant="40" id="Sbf-qY-zJT"/>
+                                                <constraint firstAttribute="height" constant="35" id="Sbf-qY-zJT"/>
                                                 <constraint firstItem="qdW-pq-cg0" firstAttribute="leading" secondItem="YQ1-hq-FZk" secondAttribute="leading" id="Sqd-ff-iPB"/>
                                                 <constraint firstAttribute="bottom" secondItem="qdW-pq-cg0" secondAttribute="bottom" id="b3C-eB-OhX"/>
                                                 <constraint firstItem="GLC-cm-yR2" firstAttribute="top" secondItem="YQ1-hq-FZk" secondAttribute="top" id="bMj-Br-Nda"/>
@@ -119,8 +119,8 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aze-g6-4Vq">
-                                            <rect key="frame" x="8" y="89" width="290" height="90"/>
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aze-g6-4Vq">
+                                            <rect key="frame" x="8" y="85" width="290" height="90"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="90" id="ged-Yb-6vR"/>
@@ -205,6 +205,7 @@
                                 <connections>
                                     <outlet property="contentLabel" destination="WXf-mj-RZu" id="pch-01-fYe"/>
                                     <outlet property="flowLaout" destination="gjV-55-muT" id="sqF-Hw-K77"/>
+                                    <outlet property="footerToolView" destination="YQ1-hq-FZk" id="32b-nj-KLg"/>
                                     <outlet property="iconImageView" destination="pw6-nJ-ZX2" id="GVs-bw-GOc"/>
                                     <outlet property="namelabel" destination="Va2-Ss-ll5" id="Lgq-1W-Wfg"/>
                                     <outlet property="picCollectionViewHCons" destination="ged-Yb-6vR" id="z4L-Ch-Zl7"/>
