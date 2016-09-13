@@ -53,19 +53,74 @@ class HomeTableViewCell: UITableViewCell {
             
             vipImageView.image = statusViewModel?.mbrankImage
 
-            
+            print(cacluateSize())
         }
     }
     override func awakeFromNib() {
         super.awakeFromNib()
 
-    // 设置正文最大宽度
+        // 设置正文最大宽度
         contentLabel.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 20
         iconImageView.layer.cornerRadius = 20
         iconImageView.layer.masksToBounds = true
     
     }
 
+    // MARK: -内部方法
+    // 计算cell 和 collectionView的尺寸
+    private func cacluateSize() -> (CGSize,CGSize) {
+        
+        let count = statusViewModel?.thumbnail_pic?.count
+        // 么有配图
+        if  count ?? 0 == 0 {
+            
+            return (CGSizeZero,CGSizeZero)
+        }
+        // 一张配图
+        if count == 1 {
+            
+            // 从缓存中获取已经下载的图片
+            let  key = statusViewModel?.thumbnail_pic!.first!.absoluteString
+            let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key)
+            return (image.size,image.size)
+            
+        }
+        // 四张配图
+        let imgW :CGFloat = 90
+        let imgH :CGFloat = 90
+        let margin :CGFloat = 10
+        if count == 4 {
+            
+            
+            let col = 2
+            
+            
+            let  width = imgW * CGFloat(col) + CGFloat(col - 1) * margin
+            let  height = imgH * CGFloat(col) + CGFloat(col - 1) * margin
+            return (CGSizeMake(imgW, imgH),CGSizeMake(width, height))
+            
+            
+        }
+        
+        // 九张配图
+        if count == 9 {
+            
+            let col = 3
+            
+            
+            let  width = imgW * CGFloat(col) + CGFloat(col - 1) * margin
+            let  height = imgH * CGFloat(col) + CGFloat(col - 1) * margin
+            return (CGSizeMake(imgW, imgH),CGSizeMake(width, height))
+
+        }
+        
+        // 其他张配图
+        let col = 3
+        let row = (count! - 1) / 3 + 1
+        let  width = imgW * CGFloat(col) + CGFloat(col - 1) * margin
+        let  height = imgH * CGFloat(row) + CGFloat(row - 1) * margin
+        return (CGSizeMake(imgW, imgH),CGSizeMake(width, height))
+    }
     
 }
 
