@@ -45,9 +45,9 @@ class HomeTableViewController: BaseTableViewController {
         loadStatusesData()
         
         // 预估行高
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 400
         // 自动计算高
-        tableView.rowHeight = UITableViewAutomaticDimension
+//        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     deinit {
@@ -83,8 +83,6 @@ class HomeTableViewController: BaseTableViewController {
                 models.append(statusViewModel)
             }
             
-            
-            
             // 缓存配图
             self.cachesImages(models)
         }
@@ -116,8 +114,7 @@ class HomeTableViewController: BaseTableViewController {
                 
                 // sdwebimage下载图片
                 SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _,_) -> Void in
-                    
-                    print("下载完成")
+                
                     // 将当前下载操作从组中移除 只有当所有添加进去的操作都被移除了才会调用dispatch_group_notify
                     dispatch_group_leave(group)
                 })
@@ -127,6 +124,7 @@ class HomeTableViewController: BaseTableViewController {
         }
         
         dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
+            
             self.statusesViewModel = viewModels
             print("全部下载完成")
         }

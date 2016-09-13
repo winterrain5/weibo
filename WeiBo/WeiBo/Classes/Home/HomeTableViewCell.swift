@@ -9,9 +9,14 @@
 import UIKit
 import SDWebImage
 class HomeTableViewCell: UITableViewCell {
+    
+    @IBOutlet weak var picCollectionViewHCons: NSLayoutConstraint!
+    @IBOutlet weak var picCollectionViewWCons: NSLayoutConstraint!
+    @IBOutlet weak var flowLaout: UICollectionViewFlowLayout!
     // 来源
     @IBOutlet weak var souceLabel: UILabel!
     // 正文
+    @IBOutlet weak var pictureCollectionView: UICollectionView!
     @IBOutlet weak var contentLabel: UILabel!
     // 时间
     @IBOutlet weak var timeLabel: UILabel!
@@ -40,20 +45,29 @@ class HomeTableViewCell: UITableViewCell {
             
             namelabel.text = statusViewModel?.status.user?.screen_name
             
-          
             timeLabel.text = statusViewModel?.create_time
          
-                
             souceLabel.text = statusViewModel?.source_str
             
             contentLabel.text = statusViewModel?.status.text
-            
             
             verifiedImageView.image = statusViewModel?.verifiedImage
             
             vipImageView.image = statusViewModel?.mbrankImage
 
-            print(cacluateSize())
+            // 更新配图
+            pictureCollectionView.reloadData()
+            
+           
+            let (itemSize,clvSize) = cacluateSize()
+            // 更新配图的尺寸
+            if itemSize != CGSizeZero {
+                // 更新cell 的尺寸
+                flowLaout.itemSize = itemSize
+            }
+            // 更新collectionView的
+            picCollectionViewHCons.constant = clvSize.height
+            picCollectionViewWCons.constant = clvSize.width
         }
     }
     override func awakeFromNib() {
@@ -130,4 +144,37 @@ func getTextRectSize(text:NSString,font:UIFont,size:CGSize) -> CGRect {
     let rect:CGRect = text.boundingRectWithSize(size, options: option, attributes: attributes, context: nil)
     //        println("rect:\(rect)");
     return rect;
+}
+
+extension HomeTableViewCell:UICollectionViewDataSource {
+    
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        print(statusViewModel?.thumbnail_pic?.count)
+        return statusViewModel?.thumbnail_pic?.count ?? 0
+        
+    }
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("pictureCell", forIndexPath: indexPath) as! HomePictureCell
+        cell.url = statusViewModel?.thumbnail_pic![indexPath.item]
+        return cell
+        
+    }
+}
+
+class HomePictureCell:UICollectionViewCell {
+    
+    var url:NSURL? {
+        
+        didSet {
+            
+            customeImageView.sd_setImageWithURL(url)
+        }
+    }
+    
+    @IBOutlet weak var customeImageView: UIImageView!
+    
+    
+    
 }
