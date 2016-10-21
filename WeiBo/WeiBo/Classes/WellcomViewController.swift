@@ -20,11 +20,13 @@ class WellcomViewController: UIViewController {
         iocnImageView.layer.masksToBounds = true
         
         assert(UserAccountModel.loadUserAccount() != nil ,"必须先授权登录")
-        guard let url = NSURL(string:UserAccountModel.loadUserAccount()!.avatar_large!) else {
-            
-            return
-        }
-        iocnImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "avatar_default"))
+        print("\(UserAccountModel.loadUserAccount())")
+//        guard let url = NSURL(string:UserAccountModel.loadUserAccount()!.avatar_large!) else {
+//            
+//            return
+//        }
+        iocnImageView.image = UIImage(named: "avatar_default")
+//        iocnImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "avatar_default"))
     }
 
     override func viewDidAppear(animated: Bool) {

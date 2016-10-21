@@ -27,12 +27,6 @@ class HomeTableViewController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 判断用户是否登录
-        if !isLoging {
-            
-            // 设置访客视图
-            visitorView?.setupVisitorViewInfo(nil, title: "关注一些人，回这里看看有什么惊喜")
-        }
         
         // 设置导航条
         createNav()
@@ -41,15 +35,35 @@ class HomeTableViewController: BaseTableViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidPresenter, object: animatorManager)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidDismiss, object: animatorManager)
         
-        // 加载数据
-        loadStatusesData()
+
+        // 判断用户是否登录
+        if !isLoging {
+            
+            // 设置访客视图
+            visitorView?.setupVisitorViewInfo(nil, title: "关注一些人，回这里看看有什么惊喜")
+            
+        } else {
+            
+            loadStatusesData()
+            
+            // 预估行高 可以减少计算次数 提高性能
+            tableView.estimatedRowHeight = 400
+            // 自动计算高
+            //        tableView.rowHeight = UITableViewAutomaticDimension
+            
+            refreshControl = UIRefreshControl()
+            refreshControl?.addTarget(self, action: Selector("loadMoreData"), forControlEvents: UIControlEvents.ValueChanged)
+
+        }
         
-        // 预估行高 可以减少计算次数 提高性能
-        tableView.estimatedRowHeight = 400
-        // 自动计算高
-//        tableView.rowHeight = UITableViewAutomaticDimension
+                // 加载数据
+        
     }
     
+    private func loadMoreData() {
+        
+        refreshControl?.endRefreshing()
+    }
     deinit {
         
         // 移除通知
@@ -121,6 +135,7 @@ class HomeTableViewController: BaseTableViewController {
                 
             }
         
+            
         }
         
         dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
@@ -215,10 +230,10 @@ extension HomeTableViewController {
         return self.statusesViewModel?.count ?? 0
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        let rid = "homeCell"
+        let  viewModel = statusesViewModel![indexPath.row]
+        let rid = (viewModel.status.retweeted_status != nil ) ? "forwardCell" : "homeCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(rid) as! HomeTableViewCell
-        cell.statusViewModel = self.statusesViewModel![indexPath.row]
+        cell.statusViewModel = viewModel
         
         return cell
         
@@ -227,11 +242,12 @@ extension HomeTableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
          let  viewModel = statusesViewModel![indexPath.row]
+         let rid = (viewModel.status.retweeted_status != nil ) ? "forwardCell" : "homeCell"
         // 从缓存中获取行高
         guard let height = rowHeightCaches[viewModel.status.idstr ?? "-1"]  else {
             // 缓存中没有行高
             // 获取当前行对应的cell
-            let cell = tableView.dequeueReusableCellWithIdentifier("homeCell") as! HomeTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(rid) as! HomeTableViewCell
             
             // 缓存行高
             let temp = cell.cacluateRowHeight(viewModel)

@@ -23,6 +23,12 @@ class NetworkTool: AFHTTPSessionManager {
     // MARK: 加载微博数据
     func loadStatuses(finished: (array :[[String: AnyObject]]?, error :NSError?)->()) {
         
+        if UserAccountModel.loadUserAccount() == nil {
+            
+            
+            
+        }
+        
         assert(UserAccountModel.loadUserAccount() != nil
             , "必须授权登录才能获取微博数据")
         

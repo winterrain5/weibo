@@ -52,7 +52,7 @@ class StatuesViewModel: NSObject {
         }
         
         // 处理配图
-        if let picurls = status.pic_urls {
+        if let picurls = (status.retweeted_status?.pic_urls != nil) ? status.retweeted_status?.pic_urls : status.pic_urls {
             // 创建一个空的数组
             thumbnail_pic = [NSURL]()
             /**
@@ -71,6 +71,13 @@ class StatuesViewModel: NSObject {
             
         }
         
+        // 转发
+        if let text = status.retweeted_status?.text {
+            
+            let  name = status.retweeted_status?.user?.screen_name ?? ""
+            forwardText = "@" + name + ": " + text
+        }
+        
     }
     
     /**认证图片*/
@@ -87,4 +94,7 @@ class StatuesViewModel: NSObject {
     
     /**保存配图地址*/
     var thumbnail_pic:[NSURL]?
+    
+    /**转发微博的正文*/
+    var forwardText:String?
 }

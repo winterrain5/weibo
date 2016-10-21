@@ -29,7 +29,9 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var verifiedImageView: UIImageView!
     // 头像
     @IBOutlet weak var iconImageView: UIImageView!
-    
+    // 转发微博的正文
+    @IBOutlet weak var forwardLabel: UILabel!
+
     // 行高
     var cellH:CGFloat?
     
@@ -69,6 +71,11 @@ class HomeTableViewCell: UITableViewCell {
             // 更新collectionView的
             picCollectionViewHCons.constant = clvSize.height
             picCollectionViewWCons.constant = clvSize.width
+            
+            if let  text = statusViewModel?.forwardText {
+                forwardLabel.text = text
+                forwardLabel.preferredMaxLayoutWidth = UIScreen.mainScreen().bounds.width - 30
+            }
         }
     }
     override func awakeFromNib() {
