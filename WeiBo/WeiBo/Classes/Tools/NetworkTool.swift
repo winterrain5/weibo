@@ -21,7 +21,7 @@ class NetworkTool: AFHTTPSessionManager {
         
     }()
     // MARK: 加载微博数据
-    func loadStatuses(finished: (array :[[String: AnyObject]]?, error :NSError?)->()) {
+    func loadStatuses(since_id:String,max_id:String, finished: (array :[[String: AnyObject]]?, error :NSError?)->()) {
         
         if UserAccountModel.loadUserAccount() == nil {
             
@@ -34,7 +34,8 @@ class NetworkTool: AFHTTPSessionManager {
         
         let path = "2/statuses/home_timeline.json"
         
-        let parameter = ["access_token":UserAccountModel.loadUserAccount()!.access_token!]
+        
+        let parameter = ["access_token":UserAccountModel.loadUserAccount()!.access_token!,"since_id":since_id,"max_id":max_id]
         
         GET(path, parameters:parameter, success: { (task, objc) -> Void in
      

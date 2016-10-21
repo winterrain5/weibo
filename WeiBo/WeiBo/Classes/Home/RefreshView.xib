@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RefreshView" customModule="WeiBo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="userinfo_tableview_loading" translatesAutoresizingMaskIntoConstraints="NO" id="gta-vc-yaw">
+                    <rect key="frame" x="8" y="5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Bbz-cZ-Hy5"/>
+                        <constraint firstAttribute="height" constant="20" id="Jhx-hH-i8P"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在刷新..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDM-oa-Sis">
+                    <rect key="frame" x="33" y="8" width="54" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Whd-Gu-N9p">
+                    <rect key="frame" x="0.0" y="0.0" width="107" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tableview_pull_refresh" translatesAutoresizingMaskIntoConstraints="NO" id="Cmp-d0-gxY">
+                            <rect key="frame" x="8" y="5" width="20" height="20"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="下拉刷新..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gu-Pd-WG4">
+                            <rect key="frame" x="36" y="8" width="54" height="14"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fDM-oa-Sis" firstAttribute="leading" secondItem="gta-vc-yaw" secondAttribute="trailing" constant="5" id="VTp-gq-9n2"/>
+                <constraint firstItem="gta-vc-yaw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="W7x-bS-BnT"/>
+                <constraint firstItem="fDM-oa-Sis" firstAttribute="centerY" secondItem="gta-vc-yaw" secondAttribute="centerY" id="bkW-5h-06E"/>
+                <constraint firstItem="gta-vc-yaw" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="yOD-P8-w3l"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="arrowImageView" destination="Cmp-d0-gxY" id="kz7-de-6q1"/>
+                <outlet property="loadingImageView" destination="gta-vc-yaw" id="XyB-sj-QHc"/>
+                <outlet property="topView" destination="Whd-Gu-N9p" id="Mu5-Cn-yl4"/>
+            </connections>
+            <point key="canvasLocation" x="214.5" y="292"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tableview_pull_refresh" width="32" height="32"/>
+        <image name="userinfo_tableview_loading" width="32" height="32"/>
+    </resources>
+</document>

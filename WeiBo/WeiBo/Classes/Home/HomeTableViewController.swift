@@ -14,15 +14,7 @@ class HomeTableViewController: BaseTableViewController {
     
     var homeCell:HomeTableViewCell?
     // 所有微博数据
-    var statusesViewModel:[StatuesViewModel]? {
-        
-        // 调用statuses 就会调用didset 方法
-        didSet {
-            
-            tableView.reloadData()
-        }
-        
-    }
+    var statusesViewModel:[StatuesViewModel]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,19 +43,18 @@ class HomeTableViewController: BaseTableViewController {
             // 自动计算高
             //        tableView.rowHeight = UITableViewAutomaticDimension
             
-            refreshControl = UIRefreshControl()
-            refreshControl?.addTarget(self, action: Selector("loadMoreData"), forControlEvents: UIControlEvents.ValueChanged)
-
+            refreshControl = CSRefreshController()
+            refreshControl?.addTarget(self, action: Selector("loadStatusesData"), forControlEvents: UIControlEvents.ValueChanged)
+            // 自动显示
+ 
         }
         
-                // 加载数据
+        
+        navigationController?.navigationBar.insertSubview(tipLabel, atIndex: 0)
+        
         
     }
     
-    private func loadMoreData() {
-        
-        refreshControl?.endRefreshing()
-    }
     deinit {
         
         // 移除通知
@@ -73,10 +64,21 @@ class HomeTableViewController: BaseTableViewController {
     
     
     // MARK: 内部方法
-    private func loadStatusesData() {
+    @objc private func loadStatusesData() {
         SVProgressHUD.showWithStatus("加载中...")
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
-        NetworkTool.shareInstance.loadStatuses { (array, error) -> () in
+        
+        var  since_id = statusesViewModel?.first?.status.idstr ?? "0"
+        var max_id = "0"
+        if lastStatusFlag == true  {
+            
+            since_id = "0"
+            max_id = statusesViewModel?.last?.status.idstr ?? "0"
+        }
+        
+        
+        
+        NetworkTool.shareInstance.loadStatuses(since_id,max_id:max_id) { (array, error) -> () in
             if error != nil {
                 
                 SVProgressHUD.showWithStatus("获取数据失败")
@@ -97,12 +99,52 @@ class HomeTableViewController: BaseTableViewController {
                 models.append(statusViewModel)
             }
             
+            if since_id != "0" {
+                
+                self.statusesViewModel = models + self.statusesViewModel!
+
+            } else if max_id != "0"{
+                self.statusesViewModel = self.statusesViewModel! + models
+            } else {
+                
+                self.statusesViewModel = models
+            }
+            
             // 缓存配图
             self.cachesImages(models)
+            
+            self.refreshControl?.endRefreshing()
+            
+            // 显示刷新提醒
+           
+            self.showRefreshStatus(models.count)
+            
+            
         }
         
     }
     
+    private func showRefreshStatus(count:Int) {
+        
+        // 设置提醒文本
+        
+        tipLabel.hidden = false
+
+        
+        tipLabel.text = (count == 0) ? "没有更多数据" : "刷新到\(count)条数据"
+        
+        UIView.animateWithDuration(1.0, animations: { () -> Void in
+            
+            self.tipLabel.transform = CGAffineTransformMakeTranslation(0, 44)
+            
+            }) { (_) -> Void in
+                UIView.animateWithDuration(1.0, delay: 2.0, options: UIViewAnimationOptions(rawValue: 0), animations: { () -> Void in
+                        self.tipLabel.transform = CGAffineTransformIdentity
+                    }, completion: { (_) -> Void in
+                        self.tipLabel.hidden = true
+                })
+        }
+    }
     
     /**
     *  缓存配图
@@ -140,8 +182,9 @@ class HomeTableViewController: BaseTableViewController {
         
         dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
             
-            self.statusesViewModel = viewModels
+//            self.statusesViewModel = viewModels
             print("全部下载完成")
+            self.tableView.reloadData()
         }
     }
     
@@ -220,6 +263,24 @@ class HomeTableViewController: BaseTableViewController {
     
     // 定义字典 缓存行高 提高性能
     private var rowHeightCaches = [String:CGFloat]()
+    
+    private var tipLabel:UILabel = {
+        
+        let lb = UILabel()
+        lb.frame = CGRect(x: 10, y: 0, width: UIScreen.mainScreen().bounds.width - 20, height: 44)
+        lb.text = "没有更多的数据"
+        lb.textColor = UIColor.whiteColor()
+        lb.textAlignment = NSTextAlignment.Center
+        lb.backgroundColor = UIColor.orangeColor()
+        lb.layer.cornerRadius = 5
+        lb.layer.masksToBounds = true
+        lb.hidden = true
+        return lb
+        
+    }()
+    
+    // 最后一条微博的标记
+    private var lastStatusFlag:Bool?
 }
 
 // MARK: - UIViewControllerTransitioningDelegate 实现代理
@@ -234,6 +295,13 @@ extension HomeTableViewController {
         let rid = (viewModel.status.retweeted_status != nil ) ? "forwardCell" : "homeCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(rid) as! HomeTableViewCell
         cell.statusViewModel = viewModel
+        
+        // 判断是否是最后一条数据
+        if indexPath.row == (statusesViewModel!.count - 1){
+            
+            lastStatusFlag = true
+             loadStatusesData()
+        }
         
         return cell
         
