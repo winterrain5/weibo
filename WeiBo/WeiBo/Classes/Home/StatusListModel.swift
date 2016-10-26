@@ -14,7 +14,7 @@ class StatusListModel: NSObject {
     
     var statusesViewModel:[StatuesViewModel]?
     
-    @objc private func loadStatusesData(lastStatusFlag:Bool,finish:(models:[StatuesViewModel]?,error:NSError?)->()) {
+    func loadStatusesData(lastStatusFlag:Bool?,finish:(models:[StatuesViewModel]?,error:NSError?)->()) {
         
         SVProgressHUD.showWithStatus("加载中...")
         SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
@@ -113,6 +113,7 @@ class StatusListModel: NSObject {
             //            self.statusesViewModel = viewModels
             print("全部下载完成")
             finish(models: viewModels, error: nil)
+            SVProgressHUD.dismiss()
         }
     }
 

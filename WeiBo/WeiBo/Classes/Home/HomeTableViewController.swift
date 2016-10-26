@@ -14,7 +14,7 @@ class HomeTableViewController: BaseTableViewController {
     
     var homeCell:HomeTableViewCell?
     // 所有微博数据
-    var statusesViewModel:[StatuesViewModel]?
+    var statusesListModel:StatusListModel = StatusListModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class HomeTableViewController: BaseTableViewController {
         // 注册通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidPresenter, object: animatorManager)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("titleChange"), name: CSPresentationManagerDidDismiss, object: animatorManager)
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("showBrowser:"), name: CSShowPhotoBrowserController, object: nil)
 
         // 判断用户是否登录
         if !isLoging {
@@ -62,64 +62,48 @@ class HomeTableViewController: BaseTableViewController {
         
     }
     
+    // MARK: -展示图片控制器
+    @objc private func showBrowser(notice:NSNotification) {
+        print(notice.userInfo)
+        guard let pictures = notice.userInfo!["bmiddle"] as? [NSURL] else {
+            
+            SVProgressHUD.showWithStatus("没有图片")
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
+            dispatch_after(dispatch_time_t.init(1.2), dispatch_get_main_queue(), { () -> Void in
+                SVProgressHUD.dismiss()
+            })
+            return
+        }
+        guard let index = notice.userInfo!["indexPath"] as? NSIndexPath else {
+            SVProgressHUD.showWithStatus("没有索引")
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
+            dispatch_after(dispatch_time_t.init(1.2), dispatch_get_main_queue(), { () -> Void in
+                SVProgressHUD.dismiss()
+            })
+            return
+        }
+        
+        // 弹出图片浏览器
+        let vc = CSPictureBrowserController(pics: pictures, indexpath: index)
+        presentViewController(vc, animated: true, completion: nil)
+    }
     
     // MARK: 内部方法
     @objc private func loadStatusesData() {
-        SVProgressHUD.showWithStatus("加载中...")
-        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
-        
-        var  since_id = statusesViewModel?.first?.status.idstr ?? "0"
-        var max_id = "0"
-        if lastStatusFlag == true  {
-            
-            since_id = "0"
-            max_id = statusesViewModel?.last?.status.idstr ?? "0"
-        }
-        
-        
-        
-        NetworkTool.shareInstance.loadStatuses(since_id,max_id:max_id) { (array, error) -> () in
-            if error != nil {
+       
+            statusesListModel.loadStatusesData(lastStatusFlag) { (models, error) -> () in
+                if error != nil {
+                    SVProgressHUD.showErrorWithStatus("获取微博数据失败")
+                    SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
+                    return
+                }
+                self.refreshControl?.endRefreshing()
                 
-                SVProgressHUD.showWithStatus("获取数据失败")
-                return
-            }
-            
-            guard let arr = array else {
+                // 显示刷新提醒
                 
-                return
-            }
-            SVProgressHUD.dismiss()
-            var models = [StatuesViewModel]()
-            for dict in arr {
+                self.showRefreshStatus(models!.count)
                 
-                let status = Status(dict: dict)
-                
-                let statusViewModel = StatuesViewModel(status: status)
-                models.append(statusViewModel)
-            }
-            
-            if since_id != "0" {
-                
-                self.statusesViewModel = models + self.statusesViewModel!
-
-            } else if max_id != "0"{
-                self.statusesViewModel = self.statusesViewModel! + models
-            } else {
-                
-                self.statusesViewModel = models
-            }
-            
-            // 缓存配图
-            self.cachesImages(models)
-            
-            self.refreshControl?.endRefreshing()
-            
-            // 显示刷新提醒
-           
-            self.showRefreshStatus(models.count)
-            
-            
+                self.tableView.reloadData()
         }
         
     }
@@ -146,47 +130,7 @@ class HomeTableViewController: BaseTableViewController {
         }
     }
     
-    /**
-    *  缓存配图
-    */
-    private func cachesImages(viewModels:[StatuesViewModel]) {
-    
-        // 创建一个组
-        let group = dispatch_group_create()
-        
-        for viewModel in viewModels {
-            
-            // 取出url数组
-            guard let picurls = viewModel.thumbnail_pic else {
-                
-                continue
-            }
-            
-            // 遍历配图数组下载图片
-            for url in picurls {
-                
-                // 将当前的下载操作添加到组中
-                dispatch_group_enter(group)
-                
-                // sdwebimage下载图片
-                SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error, _, _,_) -> Void in
-                
-                    // 将当前下载操作从组中移除 只有当所有添加进去的操作都被移除了才会调用dispatch_group_notify
-                    dispatch_group_leave(group)
-                })
-                
-            }
-        
-            
-        }
-        
-        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
-            
-//            self.statusesViewModel = viewModels
-            print("全部下载完成")
-            self.tableView.reloadData()
-        }
-    }
+
     
     private func createNav () {
         
@@ -288,16 +232,16 @@ extension HomeTableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 如果self.statuses.count 为空 则传0
-        return self.statusesViewModel?.count ?? 0
+        return self.statusesListModel.statusesViewModel?.count ?? 0
     }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let  viewModel = statusesViewModel![indexPath.row]
+        let  viewModel = statusesListModel.statusesViewModel![indexPath.row]
         let rid = (viewModel.status.retweeted_status != nil ) ? "forwardCell" : "homeCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(rid) as! HomeTableViewCell
         cell.statusViewModel = viewModel
         
         // 判断是否是最后一条数据
-        if indexPath.row == (statusesViewModel!.count - 1){
+        if indexPath.row == (statusesListModel.statusesViewModel!.count - 1){
             
             lastStatusFlag = true
              loadStatusesData()
@@ -309,7 +253,7 @@ extension HomeTableViewController {
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-         let  viewModel = statusesViewModel![indexPath.row]
+         let  viewModel = statusesListModel.statusesViewModel![indexPath.row]
          let rid = (viewModel.status.retweeted_status != nil ) ? "forwardCell" : "homeCell"
         // 从缓存中获取行高
         guard let height = rowHeightCaches[viewModel.status.idstr ?? "-1"]  else {

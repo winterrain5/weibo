@@ -119,7 +119,7 @@
                                                 </mask>
                                             </variation>
                                         </view>
-                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aze-g6-4Vq">
+                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="aze-g6-4Vq" customClass="CSPictureView" customModule="WeiBo" customModuleProvider="target">
                                             <rect key="frame" x="8" y="82" width="290" height="90"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -158,8 +158,9 @@
                                                 </collectionViewCell>
                                             </cells>
                                             <connections>
-                                                <outlet property="dataSource" destination="9aK-n8-Rsm" id="e1d-2Q-Gdv"/>
-                                                <outlet property="delegate" destination="9aK-n8-Rsm" id="obA-gx-YtL"/>
+                                                <outlet property="flowLaout" destination="gjV-55-muT" id="9pK-XV-Jat"/>
+                                                <outlet property="picCollectionViewHCons" destination="ged-Yb-6vR" id="h13-se-rWC"/>
+                                                <outlet property="picCollectionViewWCons" destination="idm-C2-oKX" id="O6e-3C-EIa"/>
                                             </connections>
                                         </collectionView>
                                     </subviews>
@@ -204,12 +205,9 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contentLabel" destination="WXf-mj-RZu" id="pch-01-fYe"/>
-                                    <outlet property="flowLaout" destination="gjV-55-muT" id="sqF-Hw-K77"/>
                                     <outlet property="footerToolView" destination="YQ1-hq-FZk" id="32b-nj-KLg"/>
                                     <outlet property="iconImageView" destination="pw6-nJ-ZX2" id="GVs-bw-GOc"/>
                                     <outlet property="namelabel" destination="Va2-Ss-ll5" id="Lgq-1W-Wfg"/>
-                                    <outlet property="picCollectionViewHCons" destination="ged-Yb-6vR" id="z4L-Ch-Zl7"/>
-                                    <outlet property="picCollectionViewWCons" destination="idm-C2-oKX" id="Kve-mE-gGV"/>
                                     <outlet property="pictureCollectionView" destination="aze-g6-4Vq" id="VJ6-Dt-WuP"/>
                                     <outlet property="souceLabel" destination="ULL-pF-yFy" id="ZNH-N0-RKB"/>
                                     <outlet property="timeLabel" destination="Wo2-Er-5Fa" id="zoQ-0v-0D5"/>
@@ -325,8 +323,14 @@
                                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kKd-iq-AQ6">
                                             <rect key="frame" x="10" y="90" width="580" height="141"/>
                                             <subviews>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AIu-W0-YSY">
-                                                    <rect key="frame" x="10" y="41" width="290" height="90"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abA-Ae-4mY">
+                                                    <rect key="frame" x="10" y="10" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="AIu-W0-YSY" customClass="CSPictureView" customModule="WeiBo" customModuleProvider="target">
+                                                    <rect key="frame" x="10" y="43" width="290" height="90"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="90" id="iKJ-eY-hV1"/>
@@ -364,16 +368,11 @@
                                                         </collectionViewCell>
                                                     </cells>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="dTp-ZV-P7o" id="l5M-jK-BMs"/>
-                                                        <outlet property="delegate" destination="dTp-ZV-P7o" id="bgp-Qo-856"/>
+                                                        <outlet property="flowLaout" destination="Rsk-JP-VJa" id="c2B-QU-tho"/>
+                                                        <outlet property="picCollectionViewHCons" destination="iKJ-eY-hV1" id="y3I-B9-DwJ"/>
+                                                        <outlet property="picCollectionViewWCons" destination="zPc-Ux-m3M" id="Vpj-Eh-NYj"/>
                                                     </connections>
                                                 </collectionView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="abA-Ae-4mY">
-                                                    <rect key="frame" x="10" y="10" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -429,13 +428,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="contentLabel" destination="vfU-2n-dPm" id="LCj-7C-mUo"/>
-                                    <outlet property="flowLaout" destination="Rsk-JP-VJa" id="efG-Dn-02S"/>
                                     <outlet property="footerToolView" destination="B8s-GX-rx4" id="NZp-UW-IG8"/>
                                     <outlet property="forwardLabel" destination="abA-Ae-4mY" id="TW3-Bx-W16"/>
                                     <outlet property="iconImageView" destination="V6h-vz-POR" id="hyH-cY-kx5"/>
                                     <outlet property="namelabel" destination="pHN-DQ-8PS" id="hrT-Dc-O3K"/>
-                                    <outlet property="picCollectionViewHCons" destination="iKJ-eY-hV1" id="5gq-87-v3U"/>
-                                    <outlet property="picCollectionViewWCons" destination="zPc-Ux-m3M" id="eLj-7I-p2E"/>
                                     <outlet property="pictureCollectionView" destination="AIu-W0-YSY" id="p1j-et-M3d"/>
                                     <outlet property="souceLabel" destination="vaB-oW-FLH" id="9Ef-1G-JVU"/>
                                     <outlet property="timeLabel" destination="WSf-Pr-k7u" id="jU3-Hf-S1r"/>

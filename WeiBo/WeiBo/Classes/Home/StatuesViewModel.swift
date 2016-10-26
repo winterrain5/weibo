@@ -55,21 +55,31 @@ class StatuesViewModel: NSObject {
         if let picurls = (status.retweeted_status?.pic_urls != nil) ? status.retweeted_status?.pic_urls : status.pic_urls {
             // 创建一个空的数组
             thumbnail_pic = [NSURL]()
+            
+            bmiddle_pic = [NSURL]()
             /**
             遍历配图数组下载图片
             */
             for dict in picurls {
                 
-                guard let urlStr = dict["thumbnail_pic"] as? String else {
+                guard var urlStr = dict["thumbnail_pic"] as? String else {
                     
                     continue
                 }
                 let url = NSURL(string: urlStr)!
                 // 将元素添加到数组中
                 thumbnail_pic?.append(url)
+                
+                // 处理大图
+                urlStr = urlStr.stringByReplacingOccurrencesOfString("thumbnail", withString: "bmiddle")
+                bmiddle_pic?.append(NSURL(string: urlStr)!)
             }
             
+           
+            
         }
+        
+        
         
         // 转发
         if let text = status.retweeted_status?.text {
@@ -94,6 +104,9 @@ class StatuesViewModel: NSObject {
     
     /**保存配图地址*/
     var thumbnail_pic:[NSURL]?
+    
+    /**大 图 */
+    var bmiddle_pic:[NSURL]?
     
     /**转发微博的正文*/
     var forwardText:String?

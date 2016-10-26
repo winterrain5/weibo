@@ -8,6 +8,5 @@
 
 import UIKit
 
-class Common: NSObject {
-
-}
+// 显示图片浏览器的通知
+let CSShowPhotoBrowserController = "CSShowPhotoBrowserController"
