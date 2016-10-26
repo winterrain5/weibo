@@ -19,7 +19,7 @@ class CSProgressView: UIView {
     }
     
     override func drawRect(rect: CGRect) {
-        print(progress)
+       
         // 画圆
         /*
         圆心：{宽度 * 0.5, 高度 * 0.5}
@@ -37,7 +37,7 @@ class CSProgressView: UIView {
         let height = rect.height * 0.5
         let width = rect.width * 0.5
         let center = CGPointMake(width, height)
-        let radius = min(height, width)
+        let radius = min(height, width) * 0.5
         let start = -CGFloat(M_PI_2)
         let end = 2 * CGFloat(M_PI) * progress + start
         // 设置路径

@@ -8,7 +8,7 @@
 
 import UIKit
 import SDWebImage
-class CSPictureView: UICollectionView,UICollectionViewDataSource,UICollectionViewDelegate {
+class CSPictureView: UICollectionView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.dataSource = self
@@ -40,26 +40,6 @@ class CSPictureView: UICollectionView,UICollectionViewDataSource,UICollectionVie
         }
     }
     
-    // MARK: -UICollectionViewDataSource
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return statusViewModel?.thumbnail_pic?.count ?? 0
-        
-    }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("pictureCell", forIndexPath: indexPath) as! HomePictureCell
-        cell.url = statusViewModel?.thumbnail_pic![indexPath.item]
-        return cell
-        
-    }
-    
-    // MARK: -UICollectionViewDelegate
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        let url = statusViewModel?.bmiddle_pic![indexPath.item]
-//        print(url)
-        NSNotificationCenter.defaultCenter().postNotificationName(CSShowPhotoBrowserController, object: self, userInfo: ["bmiddle":statusViewModel!.bmiddle_pic!,"indexPath":indexPath])
-    }
     
     // 计算cell 和 collectionView的尺寸
     private func cacluateSize() -> (CGSize,CGSize) {
@@ -118,6 +98,46 @@ class CSPictureView: UICollectionView,UICollectionViewDataSource,UICollectionVie
 
 }
 
+extension CSPictureView:UICollectionViewDataSource,UICollectionViewDelegate
+{
+    // MARK: -UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return statusViewModel?.thumbnail_pic?.count ?? 0
+        
+    }
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("pictureCell", forIndexPath: indexPath) as! HomePictureCell
+        cell.url = statusViewModel?.thumbnail_pic![indexPath.item]
+        return cell
+        
+    }
+    
+    // MARK: -UICollectionViewDelegate
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        // 获取当前点击图片的URL
+        let url = statusViewModel?.bmiddle_pic![indexPath.item]
+        
+        // 取出被点击的cell
+        let  cell = collectionView.cellForItemAtIndexPath(indexPath) as! HomePictureCell
+        
+        // 下载图片 设置进度
+        SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: { (current, total) -> Void in
+            
+            cell.customeImageView.progress = CGFloat(current) / CGFloat(total)
+            
+            }) { (_, error, _, _, _) -> Void in
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(CSShowPhotoBrowserController, object: self, userInfo: ["bmiddle":self.statusViewModel!.bmiddle_pic!,"indexPath":indexPath])
+        }
+        
+        
+    }
+
+}
+
 class HomePictureCell:UICollectionViewCell {
     
     var url:NSURL? {
@@ -125,9 +145,15 @@ class HomePictureCell:UICollectionViewCell {
         didSet {
             
             customeImageView.sd_setImageWithURL(url)
+            
+            // 设置gif图标
+            if let flag = url?.absoluteString.hasSuffix("gif") {
+                gifImageView.hidden = !flag
+            }
         }
     }
-    
+    @IBOutlet weak var gifImageView: UIImageView!
+
     @IBOutlet weak var customeImageView: CSProgressImageView!
     
     

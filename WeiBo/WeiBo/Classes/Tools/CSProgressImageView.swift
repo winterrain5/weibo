@@ -13,7 +13,7 @@ class CSProgressImageView: UIImageView {
     // 记录当前进度 0.0~1.0
     var progress:CGFloat = 0.0 {
         didSet {
-            print(progress)
+            
             // 调用这个方法系统就会调用 drawRect
             progressView.progress = progress
         }

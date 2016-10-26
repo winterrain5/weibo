@@ -71,7 +71,7 @@ class StatuesViewModel: NSObject {
                 thumbnail_pic?.append(url)
                 
                 // 处理大图
-                urlStr = urlStr.stringByReplacingOccurrencesOfString("thumbnail", withString: "bmiddle")
+                urlStr = urlStr.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
                 bmiddle_pic?.append(NSURL(string: urlStr)!)
             }
             
