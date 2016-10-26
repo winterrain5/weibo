@@ -128,7 +128,7 @@ class HomePictureCell:UICollectionViewCell {
         }
     }
     
-    @IBOutlet weak var customeImageView: UIImageView!
+    @IBOutlet weak var customeImageView: CSProgressImageView!
     
     
     

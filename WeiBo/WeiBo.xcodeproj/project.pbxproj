@@ -13,6 +13,8 @@
 		251DC93F1D50BF1200488BED /* QRCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251DC93E1D50BF1200488BED /* QRCodeViewController.swift */; };
 		252492C71DBEF564006C6A22 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252492C61DBEF564006C6A22 /* Common.swift */; };
 		252492CA1DBEF84B006C6A22 /* CSPictureBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252492C91DBEF84B006C6A22 /* CSPictureBrowserController.swift */; };
+		252492F01DC08A0F006C6A22 /* CSProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252492EE1DC08A0F006C6A22 /* CSProgressView.swift */; };
+		252492F11DC08A0F006C6A22 /* CSProgressImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252492EF1DC08A0F006C6A22 /* CSProgressImageView.swift */; };
 		2527E9171D78648C00819575 /* NewfeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2527E9161D78648C00819575 /* NewfeatureViewController.swift */; };
 		2527E9191D7864A200819575 /* Newfeature.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2527E9181D7864A200819575 /* Newfeature.storyboard */; };
 		2527E9401D7DA4B100819575 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2527E93F1D7DA4B100819575 /* Status.swift */; };
@@ -86,6 +88,8 @@
 		251DC93E1D50BF1200488BED /* QRCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeViewController.swift; sourceTree = "<group>"; };
 		252492C61DBEF564006C6A22 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		252492C91DBEF84B006C6A22 /* CSPictureBrowserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSPictureBrowserController.swift; sourceTree = "<group>"; };
+		252492EE1DC08A0F006C6A22 /* CSProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSProgressView.swift; sourceTree = "<group>"; };
+		252492EF1DC08A0F006C6A22 /* CSProgressImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSProgressImageView.swift; sourceTree = "<group>"; };
 		2527E9161D78648C00819575 /* NewfeatureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewfeatureViewController.swift; sourceTree = "<group>"; };
 		2527E9181D7864A200819575 /* Newfeature.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Newfeature.storyboard; sourceTree = "<group>"; };
 		2527E93F1D7DA4B100819575 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
@@ -187,6 +191,15 @@
 				252492C91DBEF84B006C6A22 /* CSPictureBrowserController.swift */,
 			);
 			name = Browser;
+			sourceTree = "<group>";
+		};
+		252492ED1DC08A01006C6A22 /* progressView */ = {
+			isa = PBXGroup;
+			children = (
+				252492EE1DC08A0F006C6A22 /* CSProgressView.swift */,
+				252492EF1DC08A0F006C6A22 /* CSProgressImageView.swift */,
+			);
+			name = progressView;
 			sourceTree = "<group>";
 		};
 		2527E93E1D7DA48000819575 /* Model */ = {
@@ -357,6 +370,7 @@
 		255B5D671D47891D00B7E637 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				252492ED1DC08A01006C6A22 /* progressView */,
 				256E106B1D4A4465003B07E3 /* UIButton+Extension.swift */,
 				256979D31D4DDFBD00F78553 /* Extension.swift */,
 				256979D71D4DE3C000F78553 /* TitleButton.swift */,
@@ -654,6 +668,7 @@
 				25678E281D7EF82600BB4AC2 /* User.swift in Sources */,
 				259C46B41DBDF28600495388 /* CSPictureView.swift in Sources */,
 				259C46A11DBA1F2700495388 /* StatusListModel.swift in Sources */,
+				252492F01DC08A0F006C6A22 /* CSProgressView.swift in Sources */,
 				251DC93F1D50BF1200488BED /* QRCodeViewController.swift in Sources */,
 				25678E9D1D8280E200BB4AC2 /* StatuesViewModel.swift in Sources */,
 				25301DC21D4F91E600A13446 /* CSPresentManager.swift in Sources */,
@@ -666,6 +681,7 @@
 				25678E9A1D82588C00BB4AC2 /* NSDate+Extension.swift in Sources */,
 				252492C71DBEF564006C6A22 /* Common.swift in Sources */,
 				25305C7A1D75C124009325A3 /* WellcomViewController.swift in Sources */,
+				252492F11DC08A0F006C6A22 /* CSProgressImageView.swift in Sources */,
 				2527E9401D7DA4B100819575 /* Status.swift in Sources */,
 				250A42E51D47B79E0039B834 /* NullTableViewController.swift in Sources */,
 				2527E9171D78648C00819575 /* NewfeatureViewController.swift in Sources */,
