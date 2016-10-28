@@ -37,7 +37,12 @@ class MainViewController: UITabBarController {
     */
     // MARK: -按钮点击事件
     func composeButtonClick(btn: UIButton) {
-        print("asdfasd")
+        
+        let sb = UIStoryboard(name: "Compose", bundle: nil)
+        let vc = sb.instantiateInitialViewController()!
+        
+        presentViewController(vc, animated: true, completion: nil)
+        
     }
     /**
      添加所有自控制器

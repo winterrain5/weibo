@@ -11,14 +11,11 @@ import UIKit
 class CSPresentationController: UIPresentationController {
     
    var presentFrame = CGRectZero
-    
+  
    override func containerViewDidLayoutSubviews() {
     
         presentedView()?.frame = presentFrame
-    
-    
         // 添加蒙版
-    
         containerView?.insertSubview(coverButton, atIndex: 0)
         coverButton.frame = UIScreen.mainScreen().bounds
         coverButton.addTarget(self, action: Selector("coverButtonClick"), forControlEvents: UIControlEvents.TouchUpInside)

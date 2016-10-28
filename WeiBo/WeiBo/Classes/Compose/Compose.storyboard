@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="HhP-pf-op1">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="NiS-ot-vmf">
+            <objects>
+                <navigationController id="HhP-pf-op1" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5kp-EC-aUS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="VfM-bi-3y3" kind="relationship" relationship="rootViewController" id="n7j-4A-bTe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y7J-i3-v9j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-388" y="414"/>
+        </scene>
+        <!--Compose Controller-->
+        <scene sceneID="Bvd-ns-qlH">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="VfM-bi-3y3" customClass="ComposeController" customModule="WeiBo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oBn-MN-UlV"/>
+                        <viewControllerLayoutGuide type="bottom" id="kr4-Is-niW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eW5-Ok-Tjq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2ma-ud-Uha" customClass="CSTextView" customModule="WeiBo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="600" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="wbB-gk-ajl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="2ma-ud-Uha" secondAttribute="trailing" id="s7E-jx-ckK"/>
+                            <constraint firstItem="2ma-ud-Uha" firstAttribute="leading" secondItem="eW5-Ok-Tjq" secondAttribute="leading" id="u0d-Q0-9qm"/>
+                            <constraint firstItem="2ma-ud-Uha" firstAttribute="top" secondItem="oBn-MN-UlV" secondAttribute="bottom" id="v9r-IB-csP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7lh-zx-vs8">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="取消" id="soe-II-esH">
+                            <color key="tintColor" red="1" green="0.40569098079999999" blue="0.26735357339999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="closeBtnClick:" destination="VfM-bi-3y3" id="XX2-h1-sR5"/>
+                            </connections>
+                        </barButtonItem>
+                        <view key="titleView" contentMode="scaleToFill" id="FDJ-hu-RNH" customClass="CSTitleView" customModule="WeiBo" customModuleProvider="target">
+                            <rect key="frame" x="180" y="6" width="240" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                        </view>
+                        <barButtonItem key="rightBarButtonItem" title="发送" id="G4c-d4-ehh">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="sendStatusBtnClick:" destination="VfM-bi-3y3" id="frl-Jt-qK6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="customTextView" destination="2ma-ud-Uha" id="7bn-1U-eLX"/>
+                        <outlet property="customtitleView" destination="FDJ-hu-RNH" id="hKi-FD-uaO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fh7-Sr-e7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="429" y="392"/>
+        </scene>
+    </scenes>
+</document>

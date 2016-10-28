@@ -95,7 +95,7 @@ class CSBrowserCell:UICollectionViewCell,UIScrollViewDelegate {
         
     }()
     
-    private lazy var imageView: UIImageView = UIImageView()
+    lazy var imageView: UIImageView = UIImageView()
     
     private lazy var indicatorView: UIActivityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
     

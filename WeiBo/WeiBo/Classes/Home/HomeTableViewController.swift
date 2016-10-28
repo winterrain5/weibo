@@ -82,10 +82,23 @@ class HomeTableViewController: BaseTableViewController {
             })
             return
         }
+        guard let pictureView = notice.object as? CSPictureView else {
+            return
+        }
         
         // 弹出图片浏览器
         let vc = CSPictureBrowserController(pics: pictures, indexpath: index)
+        
+        // 设置转场动画代理
+        vc.transitioningDelegate = browserPresentationManager
+        // 设置转场动画样式
+        vc.modalPresentationStyle = UIModalPresentationStyle.Custom
+        
+        // 设置转场需要的其他数据
+        browserPresentationManager.setDefailtInfo(index, delegate:pictureView)
+        
         presentViewController(vc, animated: true, completion: nil)
+        
     }
     
     // MARK: 内部方法
@@ -225,6 +238,8 @@ class HomeTableViewController: BaseTableViewController {
     
     // 最后一条微博的标记
     private var lastStatusFlag:Bool?
+    
+    private lazy var browserPresentationManager = CSBrowserPresentationController()
 }
 
 // MARK: - UIViewControllerTransitioningDelegate 实现代理

@@ -8,6 +8,8 @@
 
 import UIKit
 import SDWebImage
+import SVProgressHUD
+
 class CSPictureBrowserController: UIViewController {
     var bmiddle_pic:[NSURL]
     var indexPath:NSIndexPath
@@ -97,10 +99,26 @@ class CSPictureBrowserController: UIViewController {
     
     @objc private func saveButtonClick() {
         
+        // 获取当前显示图片的索引
+        let  indexpath = collectionView.indexPathsForVisibleItems().last!
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! CSBrowserCell
+        let image = cell.imageView.image!
+        //  - (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+        UIImageWriteToSavedPhotosAlbum(image, self, Selector("image:didFinishSavingWithError:contextInfo:"), nil)
+        
         
     }
     
-    
+    func  image(image:UIImage,didFinishSavingWithError:NSError?,contextInfo:AnyObject?) {
+        
+        if didFinishSavingWithError != nil {
+            SVProgressHUD.showErrorWithStatus("保存图片失败")
+            SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
+            return
+        }
+        SVProgressHUD.showSuccessWithStatus("保存图片成功")
+        SVProgressHUD.setDefaultMaskType(SVProgressHUDMaskType.Black)
+    }
     
 }
 extension CSPictureBrowserController: UICollectionViewDataSource

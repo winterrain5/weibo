@@ -138,6 +138,59 @@ extension CSPictureView:UICollectionViewDataSource,UICollectionViewDelegate
 
 }
 
+extension CSPictureView: CSBrowserPresetationDelegate
+{
+    // 用于创建一个和点击图片一模一样的UIImageView
+    func browserPresentationWillShowImageView(browserPresentationVC: CSBrowserPresentationController,indexPath:NSIndexPath)  -> UIImageView {
+        
+        let iv = UIImageView()
+        iv.contentMode = UIViewContentMode.ScaleAspectFit
+        iv.clipsToBounds = true 
+//        let cell = cellForItemAtIndexPath(indexPath) as! HomePictureCell
+        let key = statusViewModel?.bmiddle_pic![indexPath.item].absoluteString
+        let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(key)
+        iv.image = image
+        iv.sizeToFit()
+        return iv
+        
+    }
+    // 用于获取点击图片相对于window的frame
+    func browserPresentationWillShowFromFrame (browserPresentationVC: CSBrowserPresentationController,indexPath:NSIndexPath)  -> CGRect {
+        
+        //拿到被点击的cell
+        let cell = cellForItemAtIndexPath(indexPath) as! HomePictureCell
+        // 转换坐标系 转换为相对于window
+        let frame = self.convertRect(cell.frame, toView: UIApplication.sharedApplication().keyWindow)
+        return frame
+
+    }
+    // 用于获取点击图片最终的frame
+    func browserPresentationWillShowToFrame (browserPresentationVC: CSBrowserPresentationController,indexPath:NSIndexPath)  -> CGRect {
+        
+        let cell = cellForItemAtIndexPath(indexPath) as! HomePictureCell
+        
+        let image = cell.customeImageView.image!
+        
+        // 计算图片宽高比
+        let width = UIScreen.mainScreen().bounds.width
+        let height = UIScreen.mainScreen().bounds.height
+        let  scale = image.size.height / image.size.width
+        
+        let imageHeight = scale * width
+        var offsetY:CGFloat = 0
+        // 判断长图还是短图
+        if imageHeight < height {
+            
+            // 设置内边距
+            offsetY = (height - imageHeight) * 0.5
+            
+        }
+        
+        return CGRectMake(0, offsetY, width, imageHeight)
+    }
+    
+}
+
 class HomePictureCell:UICollectionViewCell {
     
     var url:NSURL? {
