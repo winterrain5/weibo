@@ -47,10 +47,20 @@ class NetworkTool: AFHTTPSessionManager {
             }
             finished(array: arr, error: nil)
             }) { (task, error) -> Void in
-            
+                print(error)
                 finished(array: nil, error: error)
         }
         
         
+    }
+    
+    func sendStatus(status: String,finished:(objc: AnyObject?,error:NSError?)->()) {
+        let path = "2/statuses/update.json"
+        let parameter = ["access_token":UserAccountModel.loadUserAccount()!.access_token!,"status":status]
+        POST(path, parameters: parameter, success: { (task, objc) -> Void in
+                finished(objc: objc, error: nil)
+            }) { (task, error) -> Void in
+                finished(objc: nil, error: error)
+        }
     }
 }

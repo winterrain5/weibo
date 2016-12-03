@@ -10,7 +10,7 @@ import UIKit
 
 class BaseTableViewController: UITableViewController {
     // 记录用户登录状态
-    var isLoging = UserAccountModel.isLogin()
+    var isLoging = true
     
     // 声明一个可选变量
     var visitorView: VisitorView?

@@ -55,7 +55,7 @@ extension AppDelegate
      */
     private func defaultViewController() ->UIViewController {
         
-        // 判断是否登录
+         //判断是否登录
         if UserAccountModel.isLogin() {
             
             // 是否有新版本
