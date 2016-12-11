@@ -63,6 +63,10 @@
 		259D6EB91DC329FE0014B9E7 /* ComposeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D6EB81DC329FE0014B9E7 /* ComposeController.swift */; };
 		259D6EBB1DC32C510014B9E7 /* CSTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D6EBA1DC32C510014B9E7 /* CSTitleView.swift */; };
 		259D6EBD1DC337530014B9E7 /* CSTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 259D6EBC1DC337530014B9E7 /* CSTextView.swift */; };
+		25C00F9A1DF4FC3800ED4EE7 /* Emoticons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 25C00E541DF4FC3800ED4EE7 /* Emoticons.bundle */; };
+		25C010D71DF4FC3800ED4EE7 /* CSEmotionKeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C00F971DF4FC3800ED4EE7 /* CSEmotionKeyboardController.swift */; };
+		25C010D81DF4FC3800ED4EE7 /* CSEmotionKeyboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C00F981DF4FC3800ED4EE7 /* CSEmotionKeyboardCell.swift */; };
+		25C010D91DF4FC3800ED4EE7 /* CSEmotionKeyboardPackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C00F991DF4FC3800ED4EE7 /* CSEmotionKeyboardPackage.swift */; };
 		25C182051D54C97C00D3B2AF /* QRCodeCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C182041D54C97C00D3B2AF /* QRCodeCreateViewController.swift */; };
 		25DF93751D57001A001A559F /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25DF93741D57001A001A559F /* OAuthViewController.swift */; };
 		25DF93771D570040001A559F /* OAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25DF93761D570040001A559F /* OAuth.storyboard */; };
@@ -150,6 +154,10 @@
 		259D6EB81DC329FE0014B9E7 /* ComposeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeController.swift; sourceTree = "<group>"; };
 		259D6EBA1DC32C510014B9E7 /* CSTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTitleView.swift; sourceTree = "<group>"; };
 		259D6EBC1DC337530014B9E7 /* CSTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSTextView.swift; sourceTree = "<group>"; };
+		25C00E541DF4FC3800ED4EE7 /* Emoticons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Emoticons.bundle; sourceTree = "<group>"; };
+		25C00F971DF4FC3800ED4EE7 /* CSEmotionKeyboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSEmotionKeyboardController.swift; sourceTree = "<group>"; };
+		25C00F981DF4FC3800ED4EE7 /* CSEmotionKeyboardCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSEmotionKeyboardCell.swift; sourceTree = "<group>"; };
+		25C00F991DF4FC3800ED4EE7 /* CSEmotionKeyboardPackage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSEmotionKeyboardPackage.swift; sourceTree = "<group>"; };
 		25C182041D54C97C00D3B2AF /* QRCodeCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeCreateViewController.swift; sourceTree = "<group>"; };
 		25DF93741D57001A001A559F /* OAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		25DF93761D570040001A559F /* OAuth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = OAuth.storyboard; sourceTree = "<group>"; };
@@ -319,6 +327,7 @@
 		255B5D611D47891D00B7E637 /* Compose */ = {
 			isa = PBXGroup;
 			children = (
+				25C00E531DF4FC0800ED4EE7 /* EmotionKeyboard */,
 				256E10771D4C7E1A003B07E3 /* Null.storyboard */,
 				255B5D6C1D4789DC00B7E637 /* ComposeTableViewController.swift */,
 				250A42E41D47B79E0039B834 /* NullTableViewController.swift */,
@@ -434,6 +443,17 @@
 				25301DC11D4F91E600A13446 /* CSPresentManager.swift */,
 			);
 			name = Popover;
+			sourceTree = "<group>";
+		};
+		25C00E531DF4FC0800ED4EE7 /* EmotionKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				25C00E541DF4FC3800ED4EE7 /* Emoticons.bundle */,
+				25C00F971DF4FC3800ED4EE7 /* CSEmotionKeyboardController.swift */,
+				25C00F981DF4FC3800ED4EE7 /* CSEmotionKeyboardCell.swift */,
+				25C00F991DF4FC3800ED4EE7 /* CSEmotionKeyboardPackage.swift */,
+			);
+			path = EmotionKeyboard;
 			sourceTree = "<group>";
 		};
 		25DF93731D56FFDC001A559F /* OAuth */ = {
@@ -587,6 +607,7 @@
 				255B5BBC1D46589B00B7E637 /* Assets.xcassets in Resources */,
 				251DC93D1D50BD8D00488BED /* QRCode.storyboard in Resources */,
 				25305C7C1D75C144009325A3 /* Wellcom.storyboard in Resources */,
+				25C00F9A1DF4FC3800ED4EE7 /* Emoticons.bundle in Resources */,
 				256E10701D4C7B41003B07E3 /* Home.storyboard in Resources */,
 				2539B9781DB9AF8B00446712 /* RefreshView.xib in Resources */,
 				256E10761D4C7B7E003B07E3 /* Profile.storyboard in Resources */,
@@ -680,6 +701,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25C010D81DF4FC3800ED4EE7 /* CSEmotionKeyboardCell.swift in Sources */,
 				256E107C1D4C81E9003B07E3 /* VisitorView.swift in Sources */,
 				255B5D731D4789FD00B7E637 /* ProfileTableViewController.swift in Sources */,
 				259D6EB51DC2E1620014B9E7 /* CSBrowserPresentationController.swift in Sources */,
@@ -690,6 +712,7 @@
 				259C46A11DBA1F2700495388 /* StatusListModel.swift in Sources */,
 				252492F01DC08A0F006C6A22 /* CSProgressView.swift in Sources */,
 				259D6EBD1DC337530014B9E7 /* CSTextView.swift in Sources */,
+				25C010D91DF4FC3800ED4EE7 /* CSEmotionKeyboardPackage.swift in Sources */,
 				251DC93F1D50BF1200488BED /* QRCodeViewController.swift in Sources */,
 				25678E9D1D8280E200BB4AC2 /* StatuesViewModel.swift in Sources */,
 				25301DC21D4F91E600A13446 /* CSPresentManager.swift in Sources */,
@@ -698,6 +721,7 @@
 				259D6EB91DC329FE0014B9E7 /* ComposeController.swift in Sources */,
 				25C182051D54C97C00D3B2AF /* QRCodeCreateViewController.swift in Sources */,
 				256979DD1D4E384B00F78553 /* CSPresentationController.swift in Sources */,
+				25C010D71DF4FC3800ED4EE7 /* CSEmotionKeyboardController.swift in Sources */,
 				256979D41D4DDFBD00F78553 /* Extension.swift in Sources */,
 				256E107A1D4C802D003B07E3 /* BaseTableViewController.swift in Sources */,
 				252492CA1DBEF84B006C6A22 /* CSPictureBrowserController.swift in Sources */,

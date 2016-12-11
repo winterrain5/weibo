@@ -12,6 +12,8 @@
 		252492DD1DC07F1F006C6A22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252492DB1DC07F1F006C6A22 /* Main.storyboard */; };
 		252492DF1DC07F1F006C6A22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 252492DE1DC07F1F006C6A22 /* Assets.xcassets */; };
 		252492E21DC07F1F006C6A22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252492E01DC07F1F006C6A22 /* LaunchScreen.storyboard */; };
+		252492EA1DC07F4B006C6A22 /* CSProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252492E91DC07F4B006C6A22 /* CSProgressView.swift */; };
+		252492EC1DC084A2006C6A22 /* CSProgressImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252492EB1DC084A2006C6A22 /* CSProgressImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		252492DE1DC07F1F006C6A22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		252492E11DC07F1F006C6A22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		252492E31DC07F1F006C6A22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		252492E91DC07F4B006C6A22 /* CSProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSProgressView.swift; sourceTree = "<group>"; };
+		252492EB1DC084A2006C6A22 /* CSProgressImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSProgressImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				252492DE1DC07F1F006C6A22 /* Assets.xcassets */,
 				252492E01DC07F1F006C6A22 /* LaunchScreen.storyboard */,
 				252492E31DC07F1F006C6A22 /* Info.plist */,
+				252492E91DC07F4B006C6A22 /* CSProgressView.swift */,
+				252492EB1DC084A2006C6A22 /* CSProgressImageView.swift */,
 			);
 			path = ProgressView;
 			sourceTree = "<group>";
@@ -136,6 +142,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				252492DA1DC07F1F006C6A22 /* ViewController.swift in Sources */,
+				252492EC1DC084A2006C6A22 /* CSProgressImageView.swift in Sources */,
+				252492EA1DC07F4B006C6A22 /* CSProgressView.swift in Sources */,
 				252492D81DC07F1F006C6A22 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

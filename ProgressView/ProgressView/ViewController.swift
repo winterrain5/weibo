@@ -12,13 +12,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+      
+        view.addSubview(pv)
+        pv.frame = CGRectMake(50, 50, 200, 200)
+        pv.image = UIImage(named: "JPEG 图像-43A2AC8A5765-1")
+//        pv.backgroundColor = UIColor.redColor()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("test"), userInfo: nil, repeats: true)
     }
+    
+    func test() {
+        pv.progress += 0.1
+    }
+    
+    private lazy var pv:CSProgressImageView = CSProgressImageView(frame: CGRectZero)
+ 
 
 
 }
