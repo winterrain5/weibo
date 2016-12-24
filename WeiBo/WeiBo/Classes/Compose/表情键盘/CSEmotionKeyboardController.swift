@@ -11,8 +11,23 @@ import UIKit
 class CSEmotionKeyboardController: UIViewController {
 
     var packages:[CSEmotionKeyboardPackage] = CSEmotionKeyboardPackage.loadEmotionPackages()
+    
+    // 回调闭包
+    var emoticonCallback:(emoticon:CSKeyboardEmoticons)->()
+    
+    init(callback:(emoticon:CSKeyboardEmoticons)->()) {
+        
+        self.emoticonCallback = callback
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.redColor()
         
         // 添加子控件
         view.addSubview(collectionView)
@@ -39,7 +54,7 @@ class CSEmotionKeyboardController: UIViewController {
     // MARK: -懒加载
     private lazy var collectionView:UICollectionView = {
         let clv = UICollectionView(frame: CGRectZero, collectionViewLayout: CSEmotionKeyboardLayout())
-        clv.backgroundColor = UIColor.whiteColor()
+        clv.backgroundColor = UIColor.greenColor()
         clv.dataSource = self
         clv.delegate = self
         clv.registerClass(CSEmotionKeyboardCell.self, forCellWithReuseIdentifier: "keyboardCell")
@@ -95,6 +110,9 @@ extension CSEmotionKeyboardController:UICollectionViewDelegate {
             // 将当前点击的表情添加到最近组
             packages[0].addFavoriteEmoticon(emoticon)
         }
+        
+        //
+        emoticonCallback(emoticon: emoticon)
     }
 }
 class CSEmotionKeyboardLayout : UICollectionViewFlowLayout {

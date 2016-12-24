@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CSTextView: UITextView {
+class CSTextView: CSKeyboardTextView {
     
     var placeHolder:NSString? {
         didSet {
@@ -33,16 +33,12 @@ class CSTextView: UITextView {
     private func setupUI() {
         addSubview(placeHolderLable)
         placeHolderLable.frame = CGRectMake(4, 6, 100, 20)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("textChange"), name: UITextViewTextDidChangeNotification, object: nil)
+   
     }
     
-    @objc func textChange() {
-        
-        placeHolderLable.hidden = hasText()
-    }
+ 
     
-    private lazy var placeHolderLable: UILabel = {
+    lazy var placeHolderLable: UILabel = {
        
         let lb = UILabel()
         lb.textColor = UIColor.lightGrayColor()

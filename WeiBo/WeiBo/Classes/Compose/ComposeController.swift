@@ -10,17 +10,25 @@ import UIKit
 import SVProgressHUD
 
 class ComposeController: UIViewController {
-
+    /// 控制器容器高度约束
+    @IBOutlet weak var statusContainViewConsH: NSLayoutConstraint!
+/// 控制器容器view
+    @IBOutlet weak var statusContainerView: UIView!
+/// 最大输入字数
+    let maxCount = 10
+/// 提醒用户字数
+    @IBOutlet weak var tipLabel: UILabel!
     // 工具条底部约束
     @IBOutlet weak var toolBarBottomCons: NSLayoutConstraint!
     @IBOutlet weak var sendBtn: UIBarButtonItem!
+    // 发送文字的textView
     @IBOutlet weak var customTextView: CSTextView!
+/// 标题
     @IBOutlet weak var customtitleView: CSTitleView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         customTextView.placeHolder = "分享新鲜事..."
-//        self.edgesForExtendedLayout = UIRectEdge.None
         sendBtn.enabled = false
         
         // 注册通知 监听键盘弹起
@@ -28,7 +36,8 @@ class ComposeController: UIViewController {
         
         addChildViewController(emotionKeyboardVC)
         
-       
+        statusContainViewConsH.constant = 0
+        customTextView.becomeFirstResponder()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -39,7 +48,7 @@ class ComposeController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
          super.viewDidAppear(animated)
-        customTextView.becomeFirstResponder()
+        
 
     }
     override func viewWillDisappear(animated: Bool) {
@@ -69,6 +78,8 @@ class ComposeController: UIViewController {
         }
         
     }
+    
+    // MARK:- 按钮监听事假
     @IBAction func closeBtnClick(sender: AnyObject) {
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -76,7 +87,7 @@ class ComposeController: UIViewController {
     
     @IBAction func sendStatusBtnClick(sender: AnyObject) {
         
-        let text = customTextView.text
+        let text = customTextView.emoticonStr()
         
         NetworkTool.shareInstance.sendStatus(text) { (objc, error) -> () in
             if error != nil  {
@@ -92,6 +103,11 @@ class ComposeController: UIViewController {
     }
     // 选择图片
     @IBAction func imageItemBtnClick(sender: UIBarButtonItem) {
+        statusContainViewConsH.constant = UIScreen.mainScreen().bounds.height * 0.7
+        UIView.animateWithDuration(0.4) { () -> Void in
+            self.view.layoutIfNeeded()
+        }
+        customTextView.resignFirstResponder()
     }
     // 选择表情  
     @IBAction func emotionItemBtnClick(sender: UIBarButtonItem) {
@@ -108,15 +124,27 @@ class ComposeController: UIViewController {
             customTextView.inputView = emotionKeyboardVC.view
         }
         customTextView.becomeFirstResponder()
+       
     }
     
     // 表情键盘控制器
-    private lazy var emotionKeyboardVC:CSEmotionKeyboardController = CSEmotionKeyboardController()
+    private lazy var emotionKeyboardVC: CSEmotionKeyboardController = CSEmotionKeyboardController {[unowned self] (emoticon) -> () in
+     self.customTextView.insertEmoticon(emoticon)
+    }
+    
 }
 
 extension ComposeController:UITextViewDelegate {
     func textViewDidChange(textView: UITextView) {
         sendBtn.enabled = textView.hasText()
+        self.customTextView.placeHolderLable.hidden = textView.hasText()
+        
+        // 计算当前还可以输入多少内容
+        let  currentCount = self.customTextView.emoticonStr().characters.count
+        let  leftCount = maxCount - currentCount
+        tipLabel.text =  "\(leftCount)"
+        sendBtn.enabled = leftCount >= 0
+        tipLabel.textColor = leftCount >= 0 ? UIColor.lightGrayColor() : UIColor.redColor()
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
         customTextView.resignFirstResponder()
